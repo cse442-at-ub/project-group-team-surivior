@@ -6,7 +6,8 @@ def inputload():
     inputContainer["cursorLocation"] = {}
 
     inputContainer["keyList"] = [pygame.K_q,pygame.K_w,pygame.K_e,pygame.K_r,pygame.K_d,pygame.K_f,pygame.K_1,pygame.K_2,pygame.K_3]
-
+    inputContainer["commandList"] = ["Q","W","E","R","D","F","1","2","3","leftClick","rightClick","Mid"]
+    
     for i in range(0,12):
         inputContainer["commandState"][i] = "Released"
         inputContainer["currentCommand"][i] = 0
