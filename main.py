@@ -1,4 +1,4 @@
-import pygame,sys,threading
+import pygame,sys,threading,inputSys
 
 pygame.init()
 try:
@@ -32,12 +32,24 @@ currentDrawBlock = None
 subStateMachineArray = {}
 
 objectPool = {}
+inputSystem = inputSys.inputload()
+
+my_font = pygame.font.SysFont('Helvetica', 15)
+
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+    
+    inputSys.inputUpdate(inputSystem)
+    
+    screen.fill((0,0,0))
 
+    inputDebuger = {}
+    for i in range(0,12):
+        inputDebuger[i] = my_font.render(inputSystem["commandState"][i], False, (255, 255, 255))
+        screen.blit(inputDebuger[i], (0,i*15))
     pygame.display.update()
     clock.tick(60)
