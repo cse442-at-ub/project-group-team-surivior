@@ -1,5 +1,7 @@
 import pygame,sys,threading,inputSys
 
+# use python -m PyInstaller main.py to pack this floder into exe file
+
 pygame.init()
 try:
     saveDataFile = open("saveFile.txt", "r")
@@ -37,7 +39,7 @@ inputSystem = inputSys.inputload()
 my_font = pygame.font.SysFont('Helvetica', 15)
 
 
-while True:
+while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()

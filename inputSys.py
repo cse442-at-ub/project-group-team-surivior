@@ -20,10 +20,10 @@ def getCurrentCommand(inputContainer):
             inputContainer["currentCommand"][i] = 1
         else: 
             inputContainer["currentCommand"][i] = 0
-    m_left, m_right, m_mid = pygame.mouse.get_pressed()
-    inputContainer["currentCommand"][10] = int(m_left)
+    m_left, m_mid, m_right = pygame.mouse.get_pressed()
+    inputContainer["currentCommand"][9] = int(m_left)
+    inputContainer["currentCommand"][10] = int(m_mid)
     inputContainer["currentCommand"][11] = int(m_right)
-    inputContainer["currentCommand"][12] = int(m_mid)
 
 def inputStateMachine(inputContainer):
     for i in range(0,12):
