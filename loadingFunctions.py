@@ -7,11 +7,13 @@ def load_image(image_path):
 
 def firstLoadingSceneAssetLoad():
     imagePathArray = []
-    imagePathArray.append('asset/loadingScene/loadTextFile.png')
+    imagePathArray.append('asset/disclaimerScene/loadTextFile.png')
     for i in range(0,60):
-        imagePathArray.append('asset/loadingScene/loadingAnimationAsset/'+str(i)+'.png')
+        imagePathArray.append('asset/disclaimerScene/loadingAnimationAsset/'+str(i)+'.png')
 
     globalVar.assetPool = [None]*61
+    pygame.mixer.music.load('asset/disclaimerScene/disclaimer.wav')
+    pygame.mixer.music.play(1)
     for i in range(0,len(imagePathArray)):
         globalVar.assetPool[i] = pygame.image.load(imagePathArray[i])
         globalVar.assetPool[i] = pygame.Surface.convert_alpha(globalVar.assetPool[i]) 
