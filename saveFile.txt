@@ -1,4 +1,4 @@
-res_w = 1600 
-res_h = 900 
-BGMVolume = 5 
-SFXVolume = 5 
+globalVar.res_w = 1600 
+globalVar.res_h = 900 
+globalVar.BGMVolume = 5 
+globalVar.SFXVolume = 5 

@@ -16,7 +16,6 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Loading Multiple Images in Threads")
 
 # Create a thread for loading each image
-image_threads = []
 loaded_images = [None]*3
 
 # Function to load an image

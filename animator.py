@@ -18,7 +18,7 @@ def pointLinerAnimator(object,animation):
 
     thisPLT = object[6][animation["prpty"]]
 
-    if thisPLT in animation.keys() == False:
+    if thisPLT in animation.keys():
         nextTime = animation[thisPLT][1]
         nextValue = animation[nextTime][0]
         currentTime = thisPLT

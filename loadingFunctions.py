@@ -1,32 +1,29 @@
-import threading,pygame
+import threading,pygame,globalVar
+
 
 def load_image(image_path):
-    return pygame.image.load(image_path)
+    for i in range(0,len(image_path)):
+        globalVar.assetPool[i] = pygame.image.load(image_path[i])
 
-def firstLoadingSceneAssetLoad(assetPool,imageThread,objectPool,animationPool):
+def firstLoadingSceneAssetLoad():
     imagePathArray = []
-    imageThread = []
     imagePathArray.append('asset/loadingScene/loadTextFile.png')
-    for i in range(0,30):
+    for i in range(0,60):
         imagePathArray.append('asset/loadingScene/loadingAnimationAsset/'+str(i)+'.png')
-    for image_path in imagePathArray:
-        thread = threading.Thread(target=lambda p=image_path: assetPool.append(load_image(p)))
-        imageThread.append(thread)
-        thread.start()
 
-    objectPool[0] = [764,388,1,15,255,0,None,None]
-    objectPool[1] = [860,394,1,87,255,0,None,None]
-    objectPool[2] = [870,495,1,159,255,0,None,None]
-    objectPool[3] = [783,543,1,231,255,0,None,None]
-    objectPool[4] = [707,467,1,303,255,0,None,None]
-    objectPool[5] = [754,380,1,15,255,0,None,None]
-    objectPool[6] = [863,406,1,95,255,0,None,None]
-    objectPool[7] = [90,540,1,0,255,0,None,None]
-    objectPool[8] = [0,0,1,0,255,0,None,None]
+    globalVar.assetPool = [None]*61
+    for i in range(0,len(imagePathArray)):
+        globalVar.assetPool[i] = pygame.image.load(imagePathArray[i])
+        globalVar.assetPool[i] = pygame.Surface.convert_alpha(globalVar.assetPool[i]) 
+    globalVar.objectPool = [None]*3
 
-    for i in range(0,9):
-        objectPool[i][6] = [0,0,0,0,0,0]
-        objectPool[i][7] = [0,0,0,0,0,0]
+    globalVar.objectPool[0] = [700,350,1,15,255,0,None,None]
+    globalVar.objectPool[1] = [90,540,1,0,255,0,None,None]
+    globalVar.objectPool[2] = [0,0,1,0,255,0,None,None]
+
+    for i in range(0,3):
+        globalVar.objectPool[i][6] = [0,0,0,0,0,0]
+        globalVar.objectPool[i][7] = [0,0,0,0,0,0]
         
     textFlashInAnim = {}
     textFlashInAnim[0] = [0,13]
@@ -45,18 +42,21 @@ def firstLoadingSceneAssetLoad(assetPool,imageThread,objectPool,animationPool):
     textFlashOutAnim["loopType"] = "const"
 
     loadingIconAnim = {}
-    loadingIconAnim[0] = [0,30]
-    loadingIconAnim[30] = [30,90]
-    loadingIconAnim[90] = [30,0]
+    loadingIconAnim[0] = [0,59]
+    loadingIconAnim[59] = [59,178]
+    loadingIconAnim[178] = [59,179]
+    loadingIconAnim[179] = [0,0]
     loadingIconAnim["prpty"] = 5
-    loadingIconAnim["length"] = 90
+    loadingIconAnim["length"] = 180
     loadingIconAnim["loopType"] = "loop"
 
-    animationPool[0] = textFlashInAnim
-    animationPool[1] = textFlashOutAnim
-    animationPool[2] = loadingIconAnim
+    globalVar.animationPool = [None]*3
 
-def testFirstLoadingSceneAssetLoad(imageThread):
+    globalVar.animationPool[0] = textFlashInAnim
+    globalVar.animationPool[1] = textFlashOutAnim
+    globalVar.animationPool[2] = loadingIconAnim
+
+def testFirstLoadingSceneAssetLoad():
     # Check if all image loading threads are done
-    if all(not thread.is_alive() for thread in imageThread):
+    if not globalVar.imageThread.is_alive():
         return True
