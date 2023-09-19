@@ -1,7 +1,7 @@
-def pointLinerAnimator(object,animation,outerEffect):
+def pointLinerAnimator(object,animation):
     # -- defultObject = {0,0,0,0,0}
-    # -- defultObject["PLT"] = {0,0,0,0,0}
-    # -- defultObject["PLD"] = {0,0,0,0,0}
+    # -- defultObject[6] = {0,0,0,0,0}
+    # -- defultObject[7] = {0,0,0,0,0}
     
     # -- defultAnimation = {}
     # ---- defultAnimation[x][1]表示当前点位置，defultAnimation[x][2]表示下一个点所在时间。
@@ -13,22 +13,24 @@ def pointLinerAnimator(object,animation,outerEffect):
     # -- defultAnimation["length"] = 12
     # -- defultAnimation["loopType"] = "loop"
 
-    if object["PLT"][animation["prpty"]] >= animation["length"] and animation["loopType"] == "loop" :
-        object["PLT"][animation["prpty"]] = 0
+    if object[6][animation["prpty"]] >= animation["length"] and animation["loopType"] == "loop" :
+        object[6][animation["prpty"]] = 0
 
-    thisPLT = object["PLT"][animation["prpty"]]
+    thisPLT = object[6][animation["prpty"]]
 
-    if animation[thisPLT] != None :
-        nextTime = animation[thisPLT][2]
-        nextValue = animation[nextTime][1]
+    if thisPLT in animation.keys() == False:
+        nextTime = animation[thisPLT][1]
+        nextValue = animation[nextTime][0]
         currentTime = thisPLT
-        currentValue = animation[thisPLT][1]
+        currentValue = animation[thisPLT][0]
 
-        object["PLD"][animation["prpty"]] = (nextValue - currentValue)/(nextTime - currentTime)
+        object[7][animation["prpty"]] = (nextValue - currentValue)/(nextTime - currentTime)
 
-    finalDelta = object["PLD"][animation["prpty"]] + outerEffect[animation["prpty"]]
-    finalDelta = object["PLD"][animation["prpty"]]
+    # finalDelta = object[7][animation["prpty"]] + outerEffect[animation["prpty"]]
+    finalDelta = object[7][animation["prpty"]]
+    if animation["prpty"] == 5:
+        finalDelta = int(finalDelta)
 
-    if object["PLT"][animation["prpty"]] < animation["length"] :
+    if object[6][animation["prpty"]] < animation["length"] :
         object[animation["prpty"]] =  object[animation["prpty"]] + finalDelta
-        object["PLT"][animation["prpty"]] = object["PLT"][animation["prpty"]] + 1
+        object[6][animation["prpty"]] = object[6][animation["prpty"]] + 1

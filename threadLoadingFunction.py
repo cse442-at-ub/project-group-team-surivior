@@ -1,5 +1,3 @@
-IMAGE_PATH = 'BGloop/'+str(i)+'.png'
-
 import pygame
 import threading
 
@@ -17,18 +15,17 @@ WHITE = (255, 255, 255)
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Loading Multiple Images in Threads")
 
-# Function to load an image
-def load_image(image_path):
-    return pygame.image.load(image_path)
-
 # Create a thread for loading each image
 image_threads = []
-loaded_images = []
+loaded_images = [None]*3
 
-for image_path in IMAGE_PATHS:
-    thread = threading.Thread(target=lambda p=image_path: loaded_images.append(load_image(p)))
-    image_threads.append(thread)
-    thread.start()
+# Function to load an image
+def load_image(image_path,loaded_images):
+    for i in range(0,len(image_path)):
+        loaded_images[i] = pygame.image.load(image_path[i])
+
+image_thread = threading.Thread(target=load_image, args=(IMAGE_PATHS,loaded_images))
+image_thread.start()
 
 running = True
 while running:
@@ -37,7 +34,7 @@ while running:
             running = False
 
     # Check if all image loading threads are done
-    if all(not thread.is_alive() for thread in image_threads):
+    if not image_thread.is_alive():
         # Draw the loaded images on the screen
         screen.fill(WHITE)
         for i, image in enumerate(loaded_images):

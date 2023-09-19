@@ -1,4 +1,4 @@
-import pygame,sys,threading,inputSys
+import pygame,sys,threading,inputSys,sceneLogic,sceneDraw
 
 # use python -m PyInstaller main.py to pack this floder into exe file
 
@@ -28,13 +28,24 @@ screen = pygame.display.set_mode((res_w,res_h))
 pygame.display.set_caption('ver0.001')
 clock = pygame.time.Clock()
 
-currentUpdateBlock = None
-currentDrawBlock = None
+currentUpdateBlock = {}
+currentDrawBlock = {}
 
 subStateMachineArray = {}
 
 objectPool = {}
+assetPool = []
+sceneTimer = {}
+sceneTimer[0] = 0
+animationPool = {}
+imageThread = []
 inputSystem = inputSys.inputload()
+
+updateArguPack = [sceneTimer,currentUpdateBlock,currentDrawBlock,assetPool,objectPool,imageThread,animationPool]
+drawArguPack = [screen,objectPool,assetPool]
+
+currentUpdateBlock[0] = sceneLogic.beforeFirstLoadingLogic
+currentDrawBlock[0] = sceneDraw.drawBlack
 
 my_font = pygame.font.SysFont('Helvetica', 15)
 
@@ -46,12 +57,15 @@ while 1:
             exit()
     
     inputSys.inputUpdate(inputSystem)
-    
     screen.fill((0,0,0))
 
-    inputDebuger = {}
-    for i in range(0,12):
-        inputDebuger[i] = my_font.render(inputSystem["commandState"][i], False, (255, 255, 255))
-        screen.blit(inputDebuger[i], (0,i*15))
+    currentUpdateBlock[0](updateArguPack,drawArguPack)
+    currentDrawBlock[0](drawArguPack)
+
+    # inputDebuger = {}
+    # for i in range(0,12):
+    #     inputDebuger[i] = my_font.render(inputSystem["commandState"][i], False, (255, 255, 255))
+    #     screen.blit(inputDebuger[i], (0,i*15))
+
     pygame.display.update()
     clock.tick(60)
