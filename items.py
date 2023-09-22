@@ -6,8 +6,8 @@ ITEMS['gold'] = {'value': 1} # need add image
 #shoes
 ITEMS["Berserker's Greaves"] = {'attack speed': 0.35, 'movement speed': 45}
 ITEMS['Ionian Boots of Lucidity'] = {'ability haste': 20, 'movement': 45}
-ITEMS["Mercury's Treads"] = {'magic resistance': 25, 'movement': 45}
-ITEMS['Plated Steelcaps'] = {'armor': 20,'movement': 45}
+ITEMS["Mercury's Treads"] = {'magic resistance': 25, 'movement': 45} #UNIQUE
+ITEMS['Plated Steelcaps'] = {'armor': 20,'movement': 45} #UNIQUE
 ITEMS["Sorcerer's Shoes"] = {'magic penetration': 18, 'movement': 45}
 
 #start items
