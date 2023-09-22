@@ -15,7 +15,7 @@ pygame.display.set_caption("Survivor")
 MAP_COLOR = (127, 127, 127) # map background color 地图背景颜色
 WIDTH, HEIGHT = 1000, 800 # window size 游戏窗口尺寸
 WHITE = (255, 255, 255)
-bg_img_name = "地砖.png"
+bg_img_name = "tile.png"
 
 FPS = 60 # 每秒60帧
 PLAYER_VEL = 3 #player speed 玩家移动速度
