@@ -13,8 +13,12 @@ def pointLinerAnimator(object,animation):
     # -- defultAnimation["length"] = 12
     # -- defultAnimation["loopType"] = "loop"
 
-    if object[6][animation["prpty"]] >= animation["length"] and animation["loopType"] == "loop" :
-        object[6][animation["prpty"]] = 0
+    if object[6][animation["prpty"]] >= animation["length"]:
+        if animation["loopType"] == "loop":
+            object[6][animation["prpty"]] = 0
+        else:
+            object[7][animation["prpty"]] = 0
+            return
 
     thisPLT = object[6][animation["prpty"]]
 

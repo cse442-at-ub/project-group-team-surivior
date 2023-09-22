@@ -29,7 +29,7 @@ pygame.display.set_caption('ver0.001')
 clock = pygame.time.Clock()
 
 globalVar.currentUpdateBlock = sceneLogic.beforeFirstLoadingLogic
-globalVar.currentDrawBlock = sceneDraw.drawBlack
+globalVar.currentDrawBlock = sceneDraw.drawBlack4Start
 
 inputSystem = inputSys.inputload()
 
