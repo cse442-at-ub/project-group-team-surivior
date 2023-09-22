@@ -1,4 +1,4 @@
-import loadingFunctions,sceneDraw,animator,globalVar,threading
+import loadingFunctions,sceneDraw,animator,globalVar,threading,pygame
 
 def beforeFirstLoadingLogic():
     if globalVar.sceneTimer == 0:
@@ -39,6 +39,7 @@ def startScenenLogic():
 
     if globalVar.sceneTimer < 200 and globalVar.sceneTimer > 0:
         startSceneFIBlackSceneLogic()
+        stratSceneMusicLogic()
         stratSceneFIDocAndExitTextLogic()
         stratSceneFIConfigAndNewgameTextLogic()
         stratSceneFIcontinueTextLogic()
@@ -88,3 +89,7 @@ def stratSceneFICharCover34Logic():
 def stratSceneFICharCover5Logic():
     if globalVar.sceneTimer >= 90 and globalVar.sceneTimer < 150 :
         animator.pointLinerAnimator(globalVar.objectPool[15],globalVar.animationPool[6])
+def stratSceneMusicLogic():
+    if globalVar.sceneTimer == 22:
+        pygame.mixer.music.load('asset/bgm/StartBGM.wav')
+        pygame.mixer.music.play()
