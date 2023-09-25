@@ -2,6 +2,7 @@ import os
 import random
 import math
 import pygame
+import globalVar
 from os import listdir
 from os.path import isfile, join
 
@@ -13,7 +14,9 @@ pygame.display.set_caption("Survivor")
 # pygame.display.set_icon(icon)
 
 MAP_COLOR = (127, 127, 127) # map background color 地图背景颜色
-WIDTH, HEIGHT = 1000, 800 # window size 游戏窗口尺寸
+globalVar.res_w = 1600
+globalVar.res_h = 900
+WIDTH, HEIGHT = globalVar.res_w, globalVar.res_h # window size 游戏窗口尺寸
 WHITE = (255, 255, 255)
 bg_img_name = "tile.png"
 
