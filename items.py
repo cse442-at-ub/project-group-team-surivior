@@ -1,6 +1,6 @@
 #items
 ITEMS = {}
-#unique items
+#items with unique attributes
 UNIQUE_ITEMS = {}
 #currency
 ITEMS['gold'] = {'value': 1} # need add image
