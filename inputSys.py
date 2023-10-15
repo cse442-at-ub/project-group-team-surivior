@@ -6,27 +6,27 @@ def inputload():
     inputContainer["cursorLocation"] = {}
 
     inputContainer["keyList"] = [pygame.K_q,pygame.K_w,pygame.K_e,pygame.K_r,pygame.K_d,pygame.K_f,pygame.K_1,pygame.K_2,pygame.K_3]
-    inputContainer["commandList"] = ["Q","W","E","R","D","F","1","2","3","leftClick","rightClick","Mid"]
+    inputContainer["commandList"] = ["Q","W","E","R","S","D","F","1","2","3","leftClick","rightClick","Mid"]
     
-    for i in range(0,12):
+    for i in range(0,13):
         inputContainer["commandState"][i] = "Released"
         inputContainer["currentCommand"][i] = 0
 
     return inputContainer
 
 def getCurrentCommand(inputContainer):
-    for i in range(0,9):
+    for i in range(0,10):
         if pygame.key.get_pressed()[inputContainer["keyList"][i]]:
             inputContainer["currentCommand"][i] = 1
         else: 
             inputContainer["currentCommand"][i] = 0
     m_left, m_mid, m_right = pygame.mouse.get_pressed()
-    inputContainer["currentCommand"][9] = int(m_left)
-    inputContainer["currentCommand"][10] = int(m_mid)
-    inputContainer["currentCommand"][11] = int(m_right)
+    inputContainer["currentCommand"][10] = int(m_left)
+    inputContainer["currentCommand"][11] = int(m_mid)
+    inputContainer["currentCommand"][12] = int(m_right)
 
 def inputStateMachine(inputContainer):
-    for i in range(0,12):
+    for i in range(0,13):
         match inputContainer["commandState"][i]:
             case "Released":
                 if inputContainer["currentCommand"][i] == 1: 
