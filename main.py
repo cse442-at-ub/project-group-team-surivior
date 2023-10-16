@@ -1,4 +1,4 @@
-import pygame,sys,threading,inputSys,sceneLogic,sceneDraw,globalVar
+import pygame,sys,threading,inputSys,sceneLogic,sceneDraw,globalVar,button
 
 # use python -m PyInstaller main.py to pack this floder into exe file
 
@@ -48,6 +48,11 @@ while 1:
     globalVar.currentUpdateBlock()
     globalVar.currentDrawBlock()
 
+    # main menu buttons
+    b_Document, b_NewGame, b_Continue, b_Config, b_Exit = button.mainMenu()
+    if b_Exit.check_clicked():
+        pygame.quit()
+        
     # inputDebuger = {}
     # for i in range(0,12):
     #     inputDebuger[i] = my_font.render(inputSystem["commandState"][i], False, (255, 255, 255))
