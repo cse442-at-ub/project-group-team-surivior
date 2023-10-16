@@ -12,7 +12,8 @@ WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
-PINK = (255, 105, 180)  # RGB color code for pink
+PINK= (255, 0, 255)  # RGB color code for pink
+YELLOW = (255, 255, 0)
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Character Chases Red Square")
@@ -37,6 +38,11 @@ while running:
             if event.button == 1:  
                 character_x, character_y = pygame.mouse.get_pos()
                 moving = True
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_r and health < 20:  # Heal when 'R' key is pressed and health is less than 20
+                health += 10
+                color_change_timer = int(0.1 * FPS)  # Set color change timer to 0.1 seconds when healing
+                character_color = GREEN  # Character turns green while healing
 
     if moving:
         dx, dy = character_x - character.centerx, character_y - character.centery
