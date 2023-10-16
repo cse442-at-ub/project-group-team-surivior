@@ -1,4 +1,4 @@
-import pygame, globalVar
+import pygame
 
 class Button:
     def __init__(self, txt, pos, screen):
@@ -15,13 +15,3 @@ class Button:
             return True
         else:
             return False
-
-def mainMenu():
-    b_Document = Button("Document",(69,795),globalVar.screen)
-    b_NewGame = Button("NewGame",(396,795),globalVar.screen)
-    b_Continue = Button("Continue",(716,795),globalVar.screen)
-    b_Config = Button("Config",(1052,795),globalVar.screen)
-    b_Config.button = pygame.rect.Rect((b_Config.pos[0], b_Config.pos[1]), (130, 30))
-    b_Exit = Button("Exit",(1348,795),globalVar.screen)
-    
-    return b_Document, b_NewGame, b_Continue, b_Config, b_Exit
