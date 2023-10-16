@@ -47,11 +47,6 @@ while 1:
 
     globalVar.currentUpdateBlock()
     globalVar.currentDrawBlock()
-
-    # main menu buttons
-    b_Document, b_NewGame, b_Continue, b_Config, b_Exit = button.mainMenu()
-    if b_Exit.check_clicked():
-        pygame.quit()
         
     # inputDebuger = {}
     # for i in range(0,12):
