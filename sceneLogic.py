@@ -1,4 +1,4 @@
-import loadingFunctions,sceneDraw,animator,globalVar,threading,pygame
+import loadingFunctions,sceneDraw,animator,globalVar,threading,pygame,button
 
 def beforeFirstLoadingLogic():
     if globalVar.sceneTimer == 0:
@@ -49,6 +49,9 @@ def startScenenLogic():
         stratSceneFICharCover12Logic()
         stratSceneFICharCover34Logic()
         stratSceneFICharCover5Logic()
+    
+    if globalVar.sceneTimer >= 200:
+        mainMenuOptions()
         
     globalVar.sceneTimer = globalVar.sceneTimer + 1
 
@@ -93,3 +96,5 @@ def stratSceneMusicLogic():
     if globalVar.sceneTimer == 22:
         pygame.mixer.music.load('asset/bgm/StartBGM.wav')
         pygame.mixer.music.play()
+def mainMenuOptions():
+    button.mainMenu()
