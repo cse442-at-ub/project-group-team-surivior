@@ -20,7 +20,7 @@ character = pygame.Rect(200, 200, 30, 30)  # red square
 
 moving = False
 
-# clock = pygame.time.Clock()  # Create a clock object
+clock = pygame.time.Clock()  # Create a clock object
 
 running = True
 while running:
