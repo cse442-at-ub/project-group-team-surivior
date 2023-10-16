@@ -1,4 +1,4 @@
-import loadingFunctions,sceneDraw,animator,globalVar,threading,pygame,button
+import loadingFunctions,sceneDraw,animator,globalVar,threading,pygame,button,mouse_movement
 
 def beforeFirstLoadingLogic():
     if globalVar.sceneTimer == 0:
@@ -59,8 +59,11 @@ def startScenenLogic():
         globalVar.buttons = [b_Document, b_NewGame, b_Continue, b_Config, b_Exit]
         
     if globalVar.sceneTimer > 200:
+        if globalVar.buttons[1].check_clicked(): #b_NewGame
+            globalVar.currentUpdateBlock = mouse_movement.game()
         if globalVar.buttons[4].check_clicked(): #b_Exit
             pygame.quit()
+        
         
     globalVar.sceneTimer = globalVar.sceneTimer + 1
 
