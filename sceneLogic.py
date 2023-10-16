@@ -1,4 +1,4 @@
-import loadingFunctions,sceneDraw,animator,globalVar,threading,pygame
+import loadingFunctions,sceneDraw,animator,globalVar,threading,pygame,button,mouse_movement
 
 def beforeFirstLoadingLogic():
     if globalVar.sceneTimer == 0:
@@ -49,6 +49,21 @@ def startScenenLogic():
         stratSceneFICharCover12Logic()
         stratSceneFICharCover34Logic()
         stratSceneFICharCover5Logic()
+    if globalVar.sceneTimer == 200:
+        b_Document = button.Button("Document",(69,795),globalVar.screen)
+        b_NewGame = button.Button("NewGame",(396,795),globalVar.screen)
+        b_Continue = button.Button("Continue",(716,795),globalVar.screen)
+        b_Config = button.Button("Config",(1052,795),globalVar.screen)
+        b_Config.button = pygame.rect.Rect((b_Config.pos[0], b_Config.pos[1]), (130, 30))
+        b_Exit = button.Button("Exit",(1348,795),globalVar.screen)
+        globalVar.buttons = [b_Document, b_NewGame, b_Continue, b_Config, b_Exit]
+        
+    if globalVar.sceneTimer > 200:
+        if globalVar.buttons[1].check_clicked(): #b_NewGame
+            globalVar.currentUpdateBlock = mouse_movement.game()
+        if globalVar.buttons[4].check_clicked(): #b_Exit
+            pygame.quit()
+        
         
     globalVar.sceneTimer = globalVar.sceneTimer + 1
 
