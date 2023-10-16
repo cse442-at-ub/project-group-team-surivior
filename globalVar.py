@@ -8,6 +8,7 @@ subStateMachineArray = {}
 objectPool = []
 animationPool = []
 assetPool = []
+buttons = []
 imageThread = threading.Thread()
 sceneTimer = 0
 
