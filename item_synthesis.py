@@ -5,7 +5,7 @@ from items import *
 Based on the original assumption of game, the game has three major levels, first two major levels has six smaller levels (for better distribution and synthesis of item logic written ), 
 and the last major level has 10 smaller levels.
 
-For item bar, there are 3 grids.
+For item bar, there are 7 grids.
 
 The beginer items (Doran series) do not occupy item grid.
 
