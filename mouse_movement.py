@@ -5,7 +5,8 @@ pygame.init()
 
 WIDTH, HEIGHT = 800, 600
 ENEMY_SPEED = 1
-CHARACTER_SPEED = 3 # Adjust the target's movement speed
+CHARACTER_SPEED = 2  # Adjust the target's movement speed
+FPS = 60  # Set the desired frames per second
 
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -18,6 +19,8 @@ enemy = pygame.Rect(50, 50, 30, 30)  # blue square
 character = pygame.Rect(200, 200, 30, 30)  # red square
 
 moving = False
+
+# clock = pygame.time.Clock()  # Create a clock object
 
 running = True
 while running:
@@ -63,4 +66,7 @@ while running:
 
     # Update the display
     pygame.display.flip()
+
+    clock.tick(FPS)  # Control the frame rate
+
 pygame.quit()
