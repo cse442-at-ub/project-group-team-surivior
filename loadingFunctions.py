@@ -96,12 +96,15 @@ def startSceneAssetLoading():
     imagePathArray.append('asset/startScene/vertBlock.png') #30
     imagePathArray.append('asset/startScene/wUpperMark.png') #31
     imagePathArray.append('asset/startScene/blackEdge.png') #32
-    imagePathArray.append('asset/startScene/blackEdge.png') #33
+    imagePathArray.append('asset/startScene/lock.png') #33
+    imagePathArray.append('asset/startScene/charShdw.png') #34
+    imagePathArray.append('asset/startScene/yssoText.png') #35
+    imagePathArray.append('asset/startScene/fConfirmText.png') #36
 
     for i in range(0,9):
-        imagePathArray.append('asset/startScene/CharFrame/ys/'+str(i)+'.png') #42
+        imagePathArray.append('asset/startScene/CharFrame/ys/'+str(i)+'.png') #44
 
-    globalVar.assetPool = [None]*43
+    globalVar.assetPool = [None]*45
     # pygame.mixer.music.load('asset/disclaimerScene/disclaimer.wav')
     # pygame.mixer.music.play(1)
     for i in range(0,len(imagePathArray)):
@@ -159,13 +162,16 @@ def startSceneAssetLoading():
 
     globalVar.objectPool[45] = [0,0,1,0,0,0,None,None] #map
 
-    globalVar.objectPool[46] = [770,600,1,0,0,0,None,None] #charShdw
-    globalVar.objectPool[47] = [770,600,1,0,0,0,None,None] #lock1
-    globalVar.objectPool[48] = [770,600,1,0,0,0,None,None] #lock2
-    globalVar.objectPool[49] = [770,600,1,0,0,0,None,None] #lock3
-    globalVar.objectPool[50] = [770,600,1,0,0,0,None,None] #lock4
+    globalVar.objectPool[46] = [750,408,1,0,0,0,None,None] #charShdw
+    globalVar.objectPool[47] = [132,408,1,0,0,0,None,None] #lock1
+    globalVar.objectPool[48] = [452,408,1,0,0,0,None,None] #lock2
+    globalVar.objectPool[49] = [1097,408,1,0,0,0,None,None] #lock3
+    globalVar.objectPool[50] = [1414,408,1,0,0,0,None,None] #lock4
 
-    for i in range(0,51):
+    globalVar.objectPool[51] = [762,783,1,0,0,0,None,None] #charNameText
+    globalVar.objectPool[52] = [1370,830,1,0,0,0,None,None] #fConfirm
+
+    for i in range(0,53):
         globalVar.objectPool[i][6] = [0,0,0,0,0,0]
         globalVar.objectPool[i][7] = [0,0,0,0,0,0]
 
@@ -293,32 +299,69 @@ def startSceneAssetLoading():
     customMenuFlashOutYAnim["loopType"] = "const"
 
     charPixfadeAnim1 = {}
-    charPixfadeAnim1[0] = [445,120]
-    charPixfadeAnim1[120] = [535,0]
-    charPixfadeAnim1["prpty"] = 2
-    charPixfadeAnim1["length"] = 120
-    charPixfadeAnim1["loopType"] = "const"
-
-    charPixfadeAnim1 = {}
-    charPixfadeAnim1[0] = [445,120]
-    charPixfadeAnim1[120] = [535,0]
-    charPixfadeAnim1["prpty"] = 2
-    charPixfadeAnim1["length"] = 120
+    charPixfadeAnim1[0] = [255*0.75,5]
+    charPixfadeAnim1[5] = [255*1,10]
+    charPixfadeAnim1[10] = [255*1,0]
+    charPixfadeAnim1["prpty"] = 4
+    charPixfadeAnim1["length"] = 10
     charPixfadeAnim1["loopType"] = "const"
 
     charPixfadeAnim2 = {}
-    charPixfadeAnim2[0] = [445,120]
-    charPixfadeAnim2[120] = [535,0]
-    charPixfadeAnim2["prpty"] = 2
-    charPixfadeAnim2["length"] = 120
+    charPixfadeAnim2[0] = [255*0.25,5]
+    charPixfadeAnim2[5] = [255*0.75,10]
+    charPixfadeAnim2[10] = [255*1,0]
+    charPixfadeAnim2["prpty"] = 4
+    charPixfadeAnim2["length"] = 10
     charPixfadeAnim2["loopType"] = "const"
 
     charPixfadeAnim3 = {}
-    charPixfadeAnim3[0] = [445,120]
-    charPixfadeAnim3[120] = [535,0]
-    charPixfadeAnim3["prpty"] = 2
-    charPixfadeAnim3["length"] = 120
+    charPixfadeAnim3[0] = [255*0,5]
+    charPixfadeAnim3[5] = [255*0,10]
+    charPixfadeAnim3[10] = [255*1,0]
+    charPixfadeAnim3["prpty"] = 4
+    charPixfadeAnim3["length"] = 10
     charPixfadeAnim3["loopType"] = "const"
+
+    charNameFadeAnim = {}
+    charNameFadeAnim[0] = [255,20]
+    charNameFadeAnim[20] = [255*0.2,40]
+    charNameFadeAnim[40] = [0,0]
+    charNameFadeAnim["prpty"] = 4
+    charNameFadeAnim["length"] = 40
+    charNameFadeAnim["loopType"] = "const"
+
+    charMoveInYAnim = {}
+    charMoveInYAnim[0] = [600,25]
+    charMoveInYAnim[25] = [580,50]
+    charMoveInYAnim[50] = [536,75]
+    charMoveInYAnim[75] = [483,100]
+    charMoveInYAnim[100] = [442,120]
+    charMoveInYAnim[120] = [430,0]
+    charMoveInYAnim["prpty"] = 2
+    charMoveInYAnim["length"] = 120
+    charMoveInYAnim["loopType"] = "const"
+
+    mapMoveInYAnim = {}
+    mapMoveInYAnim[0] = [105,25]
+    mapMoveInYAnim[25] = [120,50]
+    mapMoveInYAnim[50] = [156,75]
+    mapMoveInYAnim[75] = [197,100]
+    mapMoveInYAnim[100] = [230,120]
+    mapMoveInYAnim[120] = [240,0]
+    mapMoveInYAnim["prpty"] = 2
+    mapMoveInYAnim["length"] = 120
+    mapMoveInYAnim["loopType"] = "const"
+
+    mapFlashInAnim = {}
+    mapFlashInAnim[0] = [0,25]
+    mapFlashInAnim[25] = [11,50]
+    mapFlashInAnim[50] = [38,75]
+    mapFlashInAnim[75] = [68,100]
+    mapFlashInAnim[100] = [93,120]
+    mapFlashInAnim[120] = [100,0]
+    mapFlashInAnim["prpty"] = 4
+    mapFlashInAnim["length"] = 120
+    mapFlashInAnim["loopType"] = "const"
 
     globalVar.animationPool = [None]*7
 
@@ -329,6 +372,18 @@ def startSceneAssetLoading():
     globalVar.animationPool[4] = titleYmoveFlashInAnim
     globalVar.animationPool[5] = titleShadwYmoveFlashInAnim
     globalVar.animationPool[6] = charCoverFlashOutAnim
+
+    globalVar.animationPool[7] = charFlashInAnim
+    globalVar.animationPool[8] = customMenuFlashInAnim
+    globalVar.animationPool[9] = customMenuFlashOutTransAnim
+    globalVar.animationPool[10] = customMenuFlashOutYAnim
+    globalVar.animationPool[11] = charPixfadeAnim1
+    globalVar.animationPool[12] = charPixfadeAnim2
+    globalVar.animationPool[13] = charPixfadeAnim3
+    globalVar.animationPool[14] = charNameFadeAnim
+    globalVar.animationPool[15] = charMoveInYAnim
+    globalVar.animationPool[16] = mapMoveInYAnim
+    globalVar.animationPool[17] = mapFlashInAnim
 
 def testFirstLoadingSceneAssetLoad():
     # Check if all image loading threads are done
