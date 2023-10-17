@@ -80,14 +80,35 @@ def startSceneAssetLoading():
     imagePathArray.append('asset/startScene/blocker.png')
     imagePathArray.append('asset/startScene/titleTextRed.png')
 
-    globalVar.assetPool = [None]*17
+    imagePathArray.append('asset/startScene/BPISText.png') #17
+    imagePathArray.append('asset/startScene/drBladImage.png') #18
+    imagePathArray.append('asset/startScene/drBladText.png') #19
+    imagePathArray.append('asset/startScene/eRightMark.png') #20
+    imagePathArray.append('asset/startScene/grayBox.png') #21
+    imagePathArray.append('asset/startScene/horiBlock.png') #22
+    imagePathArray.append('asset/startScene/ltKeystoneImage.png') #23
+    imagePathArray.append('asset/startScene/ltKeystoneText.png') #24
+    imagePathArray.append('asset/startScene/plsText.png') #25
+    imagePathArray.append('asset/startScene/prRuneImage.png') #26
+    imagePathArray.append('asset/startScene/prRuneText.png') #27
+    imagePathArray.append('asset/startScene/qLeftMark.png') #28
+    imagePathArray.append('asset/startScene/sDownMark.png') #29
+    imagePathArray.append('asset/startScene/vertBlock.png') #30
+    imagePathArray.append('asset/startScene/wUpperMark.png') #31
+    imagePathArray.append('asset/startScene/blackEdge.png') #32
+    imagePathArray.append('asset/startScene/blackEdge.png') #33
+
+    for i in range(0,9):
+        imagePathArray.append('asset/startScene/CharFrame/ys/'+str(i)+'.png') #42
+
+    globalVar.assetPool = [None]*43
     # pygame.mixer.music.load('asset/disclaimerScene/disclaimer.wav')
     # pygame.mixer.music.play(1)
     for i in range(0,len(imagePathArray)):
         globalVar.assetPool[i] = pygame.image.load(imagePathArray[i])
         globalVar.assetPool[i] = pygame.Surface.convert_alpha(globalVar.assetPool[i]) 
 
-    globalVar.objectPool = [None]*27
+    globalVar.objectPool = [None]*45
 
     globalVar.objectPool[0] = [0,0,1,0,255,0,None,None] #black screen
     globalVar.objectPool[1] = [795,835,1,0,0,0,None,None] #lowTrig
@@ -117,7 +138,34 @@ def startSceneAssetLoading():
     globalVar.objectPool[25] = [320,150,1,0,255,0,None,None] #Char5
     globalVar.objectPool[26] = [0,0,1,0,255,0,None,None] #BlockLineBTWChar
 
-    for i in range(0,26):
+    globalVar.objectPool[27] = [770,600,1,0,0,0,None,None] #charIdle
+    globalVar.objectPool[28] = [1173,480,1,0,0,0,None,None] #BPISText
+    globalVar.objectPool[29] = [1128,445,1,0,0,0,None,None] #grayBox1
+    globalVar.objectPool[30] = [1173,235,1,0,0,0,None,None] #DRISText
+    globalVar.objectPool[31] = [1128,200,1,0,0,0,None,None] #grayBox2
+    globalVar.objectPool[32] = [457,626,1,0,0,0,None,None] #sDownMark
+    globalVar.objectPool[33] = [457,533,1,0,0,0,None,None] #wUpperMark
+    globalVar.objectPool[34] = [110,90,1,0,0,0,None,None] #plsText
+    globalVar.objectPool[35] = [270,575,1,0,0,0,None,None] #eRightMark
+    globalVar.objectPool[36] = [104,575,1,0,0,0,None,None] #qLeftMark
+    globalVar.objectPool[37] = [166,214,1,0,0,0,None,None] #prRuneImage
+    globalVar.objectPool[38] = [169,295,1,0,0,0,None,None] #prRuneText
+    globalVar.objectPool[39] = [152,630,1,0,0,0,None,None] #drBladText
+    globalVar.objectPool[40] = [154,463,1,0,0,0,None,None] #ltKeystoneText
+    globalVar.objectPool[41] = [165,543,1,0,0,0,None,None] #drBladImage
+    globalVar.objectPool[42] = [157,368,1,0,0,0,None,None] #ltKeystoneImage
+    globalVar.objectPool[43] = [-17,530,1,0,0,0,None,None] #horiBlock
+    globalVar.objectPool[44] = [125,180,1,0,0,0,None,None] #vertBlock
+
+    globalVar.objectPool[45] = [0,0,1,0,0,0,None,None] #map
+
+    globalVar.objectPool[46] = [770,600,1,0,0,0,None,None] #charShdw
+    globalVar.objectPool[47] = [770,600,1,0,0,0,None,None] #lock1
+    globalVar.objectPool[48] = [770,600,1,0,0,0,None,None] #lock2
+    globalVar.objectPool[49] = [770,600,1,0,0,0,None,None] #lock3
+    globalVar.objectPool[50] = [770,600,1,0,0,0,None,None] #lock4
+
+    for i in range(0,51):
         globalVar.objectPool[i][6] = [0,0,0,0,0,0]
         globalVar.objectPool[i][7] = [0,0,0,0,0,0]
 
@@ -203,6 +251,74 @@ def startSceneAssetLoading():
     charCoverFlashOutAnim["prpty"] = 4
     charCoverFlashOutAnim["length"] = 60
     charCoverFlashOutAnim["loopType"] = "const"
+
+    charFlashInAnim = {}
+    charFlashInAnim[0] = [0,5]
+    charFlashInAnim[5] = [225*0.16,10]
+    charFlashInAnim[10] = [225*0.5,15]
+    charFlashInAnim[15] = [225*0.84,20]
+    charFlashInAnim[20] = [225*1,0]
+    charFlashInAnim["prpty"] = 4
+    charFlashInAnim["length"] = 20
+    charFlashInAnim["loopType"] = "const"
+
+    customMenuFlashInAnim = {}
+    customMenuFlashInAnim[0] = [0,10]
+    customMenuFlashInAnim[10] = [225*0.27,20]
+    customMenuFlashInAnim[20] = [225*0.63,30]
+    customMenuFlashInAnim[30] = [225*0.90,40]
+    customMenuFlashInAnim[40] = [225*1,0]
+    customMenuFlashInAnim["prpty"] = 4
+    customMenuFlashInAnim["length"] = 40
+    customMenuFlashInAnim["loopType"] = "const"
+
+    customMenuFlashOutTransAnim = {}
+    customMenuFlashOutTransAnim[0] = [1,5]
+    customMenuFlashOutTransAnim[5] = [225*0.74,15]
+    customMenuFlashOutTransAnim[15] = [225*0.63,35]
+    customMenuFlashOutTransAnim[35] = [225*0.90,55]
+    customMenuFlashOutTransAnim[55] = [225*1,75]
+    customMenuFlashOutTransAnim[75] = [225*1,100]
+    customMenuFlashOutTransAnim[100] = [225*1,120]
+    customMenuFlashOutTransAnim[120] = [225*1,0]
+    customMenuFlashOutTransAnim["prpty"] = 4
+    customMenuFlashOutTransAnim["length"] = 120
+    customMenuFlashOutTransAnim["loopType"] = "const"
+
+    customMenuFlashOutYAnim = {}
+    customMenuFlashOutYAnim[0] = [445,120]
+    customMenuFlashOutYAnim[120] = [535,0]
+    customMenuFlashOutYAnim["prpty"] = 2
+    customMenuFlashOutYAnim["length"] = 120
+    customMenuFlashOutYAnim["loopType"] = "const"
+
+    charPixfadeAnim1 = {}
+    charPixfadeAnim1[0] = [445,120]
+    charPixfadeAnim1[120] = [535,0]
+    charPixfadeAnim1["prpty"] = 2
+    charPixfadeAnim1["length"] = 120
+    charPixfadeAnim1["loopType"] = "const"
+
+    charPixfadeAnim1 = {}
+    charPixfadeAnim1[0] = [445,120]
+    charPixfadeAnim1[120] = [535,0]
+    charPixfadeAnim1["prpty"] = 2
+    charPixfadeAnim1["length"] = 120
+    charPixfadeAnim1["loopType"] = "const"
+
+    charPixfadeAnim2 = {}
+    charPixfadeAnim2[0] = [445,120]
+    charPixfadeAnim2[120] = [535,0]
+    charPixfadeAnim2["prpty"] = 2
+    charPixfadeAnim2["length"] = 120
+    charPixfadeAnim2["loopType"] = "const"
+
+    charPixfadeAnim3 = {}
+    charPixfadeAnim3[0] = [445,120]
+    charPixfadeAnim3[120] = [535,0]
+    charPixfadeAnim3["prpty"] = 2
+    charPixfadeAnim3["length"] = 120
+    charPixfadeAnim3["loopType"] = "const"
 
     globalVar.animationPool = [None]*7
 
