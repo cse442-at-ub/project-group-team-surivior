@@ -38,7 +38,7 @@ def inputStateMachine(inputContainer):
                     inputContainer["commandState"][i] = "Released"
             case "Pressing":
                 if inputContainer["currentCommand"][i] == 1: 
-                    inputContainer["commandState"][i] = "Pressing"
+                    inputContainer["commandState"][i] = "Holding"
                 else:
                     inputContainer["commandState"][i] = "Releasing"
             case "Holding":

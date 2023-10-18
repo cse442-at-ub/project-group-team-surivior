@@ -44,6 +44,7 @@ def drawArrayImageObject(frames,object,screen):
     x = object[0]
     y = object[1]
     frameNum = object[5]
+    frames[frameNum].set_alpha(object[4])
     screen.blit(frames[frameNum], (x, y))
 
 def disclaimerDraw():
@@ -79,4 +80,42 @@ def startScenenDraw():
     drawOneImageObject(globalVar.assetPool[2],globalVar.objectPool[3],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[6],globalVar.objectPool[2],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[5],globalVar.objectPool[1],globalVar.screen)
+    
+
+    drawOneImageObject(globalVar.assetPool[34],globalVar.objectPool[46],globalVar.screen)
+    charFrameArray = []
+    for i  in range(0,9):
+        charFrameArray.append(globalVar.assetPool[i+39])
+    drawArrayImageObject(charFrameArray,globalVar.objectPool[27],globalVar.screen)
+
+    drawOneImageObject(globalVar.assetPool[32],globalVar.objectPool[53],globalVar.screen)
+
+    drawOneImageObject(globalVar.assetPool[33],globalVar.objectPool[47],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[33],globalVar.objectPool[48],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[33],globalVar.objectPool[49],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[33],globalVar.objectPool[50],globalVar.screen)
+
+    drawOneImageObject(globalVar.assetPool[35],globalVar.objectPool[51],globalVar.screen) ## change 2 array
+    drawOneImageObject(globalVar.assetPool[36],globalVar.objectPool[52],globalVar.screen)
+
+    drawOneImageObject(globalVar.assetPool[30],globalVar.objectPool[44],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[22],globalVar.objectPool[43],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[23],globalVar.objectPool[42],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[18],globalVar.objectPool[41],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[24],globalVar.objectPool[40],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[19],globalVar.objectPool[39],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[27],globalVar.objectPool[38],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[26],globalVar.objectPool[37],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[28],globalVar.objectPool[36],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[20],globalVar.objectPool[35],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[31],globalVar.objectPool[33],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[29],globalVar.objectPool[32],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[21],globalVar.objectPool[31],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[48],globalVar.objectPool[30],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[21],globalVar.objectPool[29],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[17],globalVar.objectPool[28],globalVar.screen)
+    
+
+    plsFrameArray = [globalVar.assetPool[25],globalVar.assetPool[37],globalVar.assetPool[38]]
+    drawArrayImageObject(plsFrameArray,globalVar.objectPool[34],globalVar.screen)
     drawBlack(globalVar.objectPool[0])

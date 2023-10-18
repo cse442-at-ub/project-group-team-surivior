@@ -100,21 +100,25 @@ def startSceneAssetLoading():
     imagePathArray.append('asset/startScene/charShdw.png') #34
     imagePathArray.append('asset/startScene/yssoText.png') #35
     imagePathArray.append('asset/startScene/fConfirmText.png') #36
+    imagePathArray.append('asset/startScene/plsText2.png') #37
+    imagePathArray.append('asset/startScene/plsText3.png') #38
 
     for i in range(0,9):
-        imagePathArray.append('asset/startScene/CharFrame/ys/'+str(i)+'.png') #44
+        imagePathArray.append('asset/startScene/CharFrame/ys/'+str(i)+'.png') #47
 
-    globalVar.assetPool = [None]*45
+    imagePathArray.append('asset/startScene/DRISText.png') #48
+
+    globalVar.assetPool = [None]*50
     # pygame.mixer.music.load('asset/disclaimerScene/disclaimer.wav')
     # pygame.mixer.music.play(1)
     for i in range(0,len(imagePathArray)):
         globalVar.assetPool[i] = pygame.image.load(imagePathArray[i])
         globalVar.assetPool[i] = pygame.Surface.convert_alpha(globalVar.assetPool[i]) 
 
-    globalVar.objectPool = [None]*45
+    globalVar.objectPool = [None]*60
 
     globalVar.objectPool[0] = [0,0,1,0,255,0,None,None] #black screen
-    globalVar.objectPool[1] = [795,835,1,0,0,0,None,None] #lowTrig
+    globalVar.objectPool[1] = [795,842,1,0,0,0,None,None] #lowTrig
     globalVar.objectPool[2] = [0,0,1,0,0,0,None,None] #mouse
     globalVar.objectPool[3] = [72,800,1,0,0,0,None,None] #documentText
     globalVar.objectPool[4] = [1352,800,1,0,0,0,None,None] #exitText
@@ -148,7 +152,7 @@ def startSceneAssetLoading():
     globalVar.objectPool[31] = [1128,200,1,0,0,0,None,None] #grayBox2
     globalVar.objectPool[32] = [457,626,1,0,0,0,None,None] #sDownMark
     globalVar.objectPool[33] = [457,533,1,0,0,0,None,None] #wUpperMark
-    globalVar.objectPool[34] = [110,90,1,0,0,0,None,None] #plsText
+    globalVar.objectPool[34] = [110,90,1,0,0,2,None,None] #plsText
     globalVar.objectPool[35] = [270,575,1,0,0,0,None,None] #eRightMark
     globalVar.objectPool[36] = [104,575,1,0,0,0,None,None] #qLeftMark
     globalVar.objectPool[37] = [166,214,1,0,0,0,None,None] #prRuneImage
@@ -162,7 +166,7 @@ def startSceneAssetLoading():
 
     globalVar.objectPool[45] = [0,0,1,0,0,0,None,None] #map
 
-    globalVar.objectPool[46] = [750,408,1,0,0,0,None,None] #charShdw
+    globalVar.objectPool[46] = [750,653,1,0,0,0,None,None] #charShdw
     globalVar.objectPool[47] = [132,408,1,0,0,0,None,None] #lock1
     globalVar.objectPool[48] = [452,408,1,0,0,0,None,None] #lock2
     globalVar.objectPool[49] = [1097,408,1,0,0,0,None,None] #lock3
@@ -171,7 +175,12 @@ def startSceneAssetLoading():
     globalVar.objectPool[51] = [762,783,1,0,0,0,None,None] #charNameText
     globalVar.objectPool[52] = [1370,830,1,0,0,0,None,None] #fConfirm
 
-    for i in range(0,53):
+    globalVar.objectPool[53] = [0,0,1,0,0,0,None,None] #blackEdge
+
+    globalVar.ssv = [None]*5
+    globalVar.ssv[0] = [150,474,795,1112,1426]
+
+    for i in range(0,54):
         globalVar.objectPool[i][6] = [0,0,0,0,0,0]
         globalVar.objectPool[i][7] = [0,0,0,0,0,0]
 
@@ -363,7 +372,65 @@ def startSceneAssetLoading():
     mapFlashInAnim["length"] = 120
     mapFlashInAnim["loopType"] = "const"
 
-    globalVar.animationPool = [None]*7
+    dbTrigFlashInAnim = {}
+    dbTrigFlashInAnim[0] = [0,5]
+    dbTrigFlashInAnim[5] = [255,0]
+    dbTrigFlashInAnim["prpty"] = 4
+    dbTrigFlashInAnim["length"] = 5
+    dbTrigFlashInAnim["loopType"] = "const"
+
+    dbTrigFlashOutAnim = {}
+    dbTrigFlashOutAnim[0] = [255,5]
+    dbTrigFlashOutAnim[5] = [0,0]
+    dbTrigFlashOutAnim["prpty"] = 4
+    dbTrigFlashOutAnim["length"] = 5
+    dbTrigFlashOutAnim["loopType"] = "const"
+    
+    newGameMassFlashOutAnim = {}
+    newGameMassFlashOutAnim[0] = [255,5]
+    newGameMassFlashOutAnim[5] = [255*0.24,15]
+    newGameMassFlashOutAnim[15] = [0,0]
+    newGameMassFlashOutAnim["prpty"] = 4
+    newGameMassFlashOutAnim["length"] = 15
+    newGameMassFlashOutAnim["loopType"] = "const"
+
+    newGameMassFlashOutYAnim = {}
+    newGameMassFlashOutYAnim[0] = [800,15]
+    newGameMassFlashOutYAnim[15] = [805,0]
+    newGameMassFlashOutYAnim["prpty"] = 2
+    newGameMassFlashOutYAnim["length"] = 15
+    newGameMassFlashOutYAnim["loopType"] = "const"
+
+    blackEdegFlashInAnim = {}
+    blackEdegFlashInAnim[0] = [0,5]
+    blackEdegFlashInAnim[5] = [255*0.75,15]
+    blackEdegFlashInAnim[15] = [255,0]
+    blackEdegFlashInAnim["prpty"] = 4
+    blackEdegFlashInAnim["length"] = 15
+    blackEdegFlashInAnim["loopType"] = "const"
+
+    charCover15FlashInAnim = {}
+    charCover15FlashInAnim[0] = [0,15]
+    charCover15FlashInAnim[15] = [255*0.75,0]
+    charCover15FlashInAnim["prpty"] = 4
+    charCover15FlashInAnim["length"] = 15
+    charCover15FlashInAnim["loopType"] = "const"
+
+    charCover24FlashInAnim = {}
+    charCover24FlashInAnim[0] = [0,15]
+    charCover24FlashInAnim[15] = [255*0.25,0]
+    charCover24FlashInAnim["prpty"] = 4
+    charCover24FlashInAnim["length"] = 15
+    charCover24FlashInAnim["loopType"] = "const"
+
+    midCharShutterFlashoutAnim = {}
+    midCharShutterFlashoutAnim[0] = [225,15]
+    midCharShutterFlashoutAnim[15] = [255*0.25,0]
+    midCharShutterFlashoutAnim["prpty"] = 4
+    midCharShutterFlashoutAnim["length"] = 15
+    midCharShutterFlashoutAnim["loopType"] = "const"
+
+    globalVar.animationPool = [None]*30
 
     globalVar.animationPool[0] = backScreenFlashInAnim
     globalVar.animationPool[1] = selectionFlashInAnim
@@ -384,6 +451,14 @@ def startSceneAssetLoading():
     globalVar.animationPool[15] = charMoveInYAnim
     globalVar.animationPool[16] = mapMoveInYAnim
     globalVar.animationPool[17] = mapFlashInAnim
+    globalVar.animationPool[18] = dbTrigFlashInAnim
+    globalVar.animationPool[19] = dbTrigFlashOutAnim
+    globalVar.animationPool[20] = newGameMassFlashOutAnim
+    globalVar.animationPool[21] = newGameMassFlashOutYAnim
+    globalVar.animationPool[22] = blackEdegFlashInAnim
+    globalVar.animationPool[23] = charCover15FlashInAnim
+    globalVar.animationPool[24] = charCover24FlashInAnim
+    globalVar.animationPool[25] = midCharShutterFlashoutAnim
 
 def testFirstLoadingSceneAssetLoad():
     # Check if all image loading threads are done
