@@ -220,3 +220,14 @@ def selectSubInStartSceneStateMachine():
                         globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                         globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                     globalVar.sceneTimer = 299
+        case "mapFlashIn":
+            if globalVar.sceneTimer < 340:
+                for i in range(28,45):
+                    animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[8])
+            if globalVar.sceneTimer >= 340:
+                if globalVar.inputSystem["commandState"][6] == "Pressing":
+                    globalVar.subState[0] = "mapFlashIn"
+                    for i in range(0,54):
+                        globalVar.objectPool[i][6] = [0,0,0,0,0,0]
+                        globalVar.objectPool[i][7] = [0,0,0,0,0,0]
+                    globalVar.sceneTimer = 299
