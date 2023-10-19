@@ -81,12 +81,9 @@ def startScenenDraw():
     drawOneImageObject(globalVar.assetPool[6],globalVar.objectPool[2],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[5],globalVar.objectPool[1],globalVar.screen)
     
-
-    drawOneImageObject(globalVar.assetPool[34],globalVar.objectPool[46],globalVar.screen)
     charFrameArray = []
     for i  in range(0,9):
         charFrameArray.append(globalVar.assetPool[i+39])
-    drawArrayImageObject(charFrameArray,globalVar.objectPool[27],globalVar.screen)
 
     drawOneImageObject(globalVar.assetPool[32],globalVar.objectPool[53],globalVar.screen)
 
@@ -115,7 +112,11 @@ def startScenenDraw():
     drawOneImageObject(globalVar.assetPool[21],globalVar.objectPool[29],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[17],globalVar.objectPool[28],globalVar.screen)
     
-
     plsFrameArray = [globalVar.assetPool[25],globalVar.assetPool[37],globalVar.assetPool[38]]
     drawArrayImageObject(plsFrameArray,globalVar.objectPool[34],globalVar.screen)
+
+    drawOneImageObject(globalVar.assetPool[49],globalVar.objectPool[45],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[34],globalVar.objectPool[46],globalVar.screen)
+    drawArrayImageObject(charFrameArray,globalVar.objectPool[27],globalVar.screen)
+
     drawBlack(globalVar.objectPool[0])

@@ -190,13 +190,11 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 for i in range(46,53):
                     animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[7])
-                    animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[7])
                 animator.pointLinerAnimator(globalVar.objectPool[27],globalVar.animationPool[7])
                 animator.pointLinerAnimator(globalVar.objectPool[34],globalVar.animationPool[7])
                 globalVar.objectPool[34][5] = 1
             if globalVar.sceneTimer > 315 and globalVar.sceneTimer < 335:
                 for i in range(46,53):
-                    animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[7])
                     animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[7])
                 animator.pointLinerAnimator(globalVar.objectPool[27],globalVar.animationPool[7])
                 animator.pointLinerAnimator(globalVar.objectPool[34],globalVar.animationPool[7])
@@ -211,7 +209,9 @@ def selectSubInStartSceneStateMachine():
                     globalVar.sceneTimer = 299
         case "customFlashIn":
             if globalVar.sceneTimer < 340:
-                for i in range(28,45):
+                for i in range(28,34):
+                    animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[8])
+                for i in range(35,45):
                     animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[8])
             if globalVar.sceneTimer >= 340:
                 if globalVar.inputSystem["commandState"][6] == "Pressing":
@@ -221,13 +221,18 @@ def selectSubInStartSceneStateMachine():
                         globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                     globalVar.sceneTimer = 299
         case "mapFlashIn":
-            if globalVar.sceneTimer < 340:
+            if globalVar.sceneTimer < 420:
+                animator.pointLinerAnimator(globalVar.objectPool[11],globalVar.animationPool[26])
+                animator.pointLinerAnimator(globalVar.objectPool[12],globalVar.animationPool[26])
+                animator.pointLinerAnimator(globalVar.objectPool[13],globalVar.animationPool[27])
+                animator.pointLinerAnimator(globalVar.objectPool[14],globalVar.animationPool[27])
+                animator.pointLinerAnimator(globalVar.objectPool[15],globalVar.animationPool[28])
+                animator.pointLinerAnimator(globalVar.objectPool[27],globalVar.animationPool[15])
                 for i in range(28,45):
-                    animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[8])
-            if globalVar.sceneTimer >= 340:
-                if globalVar.inputSystem["commandState"][6] == "Pressing":
-                    globalVar.subState[0] = "mapFlashIn"
-                    for i in range(0,54):
-                        globalVar.objectPool[i][6] = [0,0,0,0,0,0]
-                        globalVar.objectPool[i][7] = [0,0,0,0,0,0]
-                    globalVar.sceneTimer = 299
+                    animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[9])
+                    animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[10])
+                animator.pointLinerAnimator(globalVar.objectPool[45],globalVar.animationPool[16])
+                animator.pointLinerAnimator(globalVar.objectPool[45],globalVar.animationPool[17])
+                animator.pointLinerAnimator(globalVar.objectPool[46],globalVar.animationPool[15])
+                for i in range(47,53):
+                    animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[9])
