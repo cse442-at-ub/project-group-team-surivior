@@ -1,5 +1,6 @@
 import pygame
 import math
+import Sound
 
 
 pygame.init()
@@ -19,7 +20,7 @@ moving = False
 target_x, target_y = character.centerx, character.centery
 
 running = True
-
+Sound.change_music('asset/bgm/GameBGM.wav')
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
