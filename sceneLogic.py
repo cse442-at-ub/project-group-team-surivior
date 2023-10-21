@@ -1,4 +1,5 @@
-import loadingFunctions,sceneDraw,animator,globalVar,threading,button,pygame,mouse_movement
+import loadingFunctions,sceneDraw,animator,globalVar,threading,button,pygame,mouse_movement,inputSys,Sound
+
 
 def beforeFirstLoadingLogic():
     if globalVar.sceneTimer == 0:
@@ -117,8 +118,8 @@ def startScenePlsTextFlashInLogic():
         animator.pointLinerAnimator(globalVar.objectPool[34],globalVar.animationPool[7])
 def startSceneMusicLogic():
     if globalVar.sceneTimer == 22:
-        pygame.mixer.music.load('asset/bgm/StartBGM.wav')
-        pygame.mixer.music.play()
+        Sound.play_music('asset/bgm/StartBGM.wav')
+        
 
 def selectSubInStartSceneStateMachine():
     match globalVar.subState[0]:
