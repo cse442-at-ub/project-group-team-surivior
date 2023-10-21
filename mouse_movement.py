@@ -2,7 +2,6 @@ import pygame
 import math
 import Sound
 
-
 def game():
     pygame.init()
 
@@ -30,7 +29,9 @@ def game():
     attack_timer = 0  # Timer for enemy attack
     color_change_timer = 0  # Timer for character color change
     color_change_timer_heal = 0
-    
+
+    clock = pygame.time.Clock() 
+
     running = True
     Sound.change_music('asset/bgm/GameBGM.wav')
     while running:
