@@ -24,14 +24,14 @@ if codeString == '':
 else:
     exec(codeString)
 
-globalVar.screen = pygame.display.set_mode((globalVar.res_w,globalVar.res_h))
+globalVar.screen = pygame.display.set_mode((globalVar.res_w,globalVar.res_h),pygame.RESIZABLE)
 pygame.display.set_caption('ver0.001')
 clock = pygame.time.Clock()
 
 globalVar.currentUpdateBlock = sceneLogic.beforeFirstLoadingLogic
 globalVar.currentDrawBlock = sceneDraw.drawBlack4Start
 
-inputSystem = inputSys.inputload()
+globalVar.inputSystem = inputSys.inputload()
 
 my_font = pygame.font.SysFont('Helvetica', 15)
 
@@ -42,16 +42,16 @@ while 1:
             pygame.quit()
             exit()
     
-    inputSys.inputUpdate(inputSystem)
+    inputSys.inputUpdate(globalVar.inputSystem)
     globalVar.screen.fill((0,0,0))
 
     globalVar.currentUpdateBlock()
     globalVar.currentDrawBlock()
-        
-    # inputDebuger = {}
-    # for i in range(0,12):
-    #     inputDebuger[i] = my_font.render(inputSystem["commandState"][i], False, (255, 255, 255))
-    #     screen.blit(inputDebuger[i], (0,i*15))
+
+    inputDebuger = {}
+    for i in range(0,13):
+        inputDebuger[i] = my_font.render(globalVar.inputSystem["commandState"][i], False, (255, 255, 255))
+        globalVar.screen.blit(inputDebuger[i], (0,i*15))
 
     pygame.display.update()
     clock.tick(60)

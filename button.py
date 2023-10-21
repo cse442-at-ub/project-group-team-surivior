@@ -4,7 +4,7 @@ class Button:
     def __init__(self, txt, pos, screen):
         self.text = txt
         self.pos = pos
-        self.button = pygame.rect.Rect((self.pos[0], self.pos[1]), (180, 30))
+        self.button = pygame.rect.Rect((self.pos[0], self.pos[1]), (320, 150))
         self.screen = screen
 
     def draw(self):
@@ -12,6 +12,12 @@ class Button:
 
     def check_clicked(self):
         if self.button.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:
+            return True
+        else:
+            return False
+        
+    def check_collided(self):
+        if self.button.collidepoint(pygame.mouse.get_pos()):
             return True
         else:
             return False

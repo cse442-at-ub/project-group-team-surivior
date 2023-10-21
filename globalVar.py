@@ -6,11 +6,15 @@ currentDrawBlock = None
 subStateMachineArray = {}
 
 objectPool = []
+buttons = []
+ssv = []
+subState = []
 animationPool = []
 assetPool = []
 buttons = []
 imageThread = threading.Thread()
 sceneTimer = 0
+inputSystem = []
 
 res_w = 0 
 res_h = 0 
