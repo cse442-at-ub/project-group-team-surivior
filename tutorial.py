@@ -2,9 +2,10 @@ import os
 import random
 import math
 import pygame
-import globalVar
+import globalVar,button
 from os import listdir
 from os.path import isfile, join
+import Sound
 
 pygame.init()
 
@@ -59,6 +60,7 @@ def main(window):
     target_x, target_y = playerIMG.centerx, playerIMG.centery
 
     running = True
+    Sound.play_music('asset/bgm/GameBGM.wav')
     while running:
         clock.tick(FPS)
 
@@ -89,6 +91,11 @@ def main(window):
         # Draw the character
         pygame.draw.rect(window, (0, 0, 255), playerIMG)
 
+        b = button.Button("exit",(0,0),window) #initialize a button
+        b.draw() #visualize button
+        if b.check_clicked(): #if mouse collide and clicked the button
+            pygame.quit()
+            
         pygame.display.update()
         
     pygame.quit()

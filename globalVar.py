@@ -9,8 +9,12 @@ currentDrawBlock = None
 subStateMachineArray = {}
 
 objectPool = []
+buttons = []
+ssv = []
+subState = []
 animationPool = []
 assetPool = []
+buttons = []
 imageThread = threading.Thread()
 sceneTimer = 0
 item = [gold, 
