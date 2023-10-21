@@ -12,3 +12,7 @@ def play_sound_effect(text):
     effect = pygame.mixer.Sound(text)
     effect.set_volume(vole)
     effect.play
+
+def change_music(text):
+    pygame.mixer.music.stop
+    play_music(text)
