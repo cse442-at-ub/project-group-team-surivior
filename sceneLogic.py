@@ -1,4 +1,4 @@
-import loadingFunctions,sceneDraw,animator,globalVar,threading,button,pygame,inputSys
+import loadingFunctions,sceneDraw,animator,globalVar,threading,button,pygame,mouse_movement
 
 def beforeFirstLoadingLogic():
     if globalVar.sceneTimer == 0:
@@ -52,12 +52,12 @@ def startScenenLogic():
         startScenePlsTextFlashInLogic()
 
     if globalVar.sceneTimer == 200:
-        b_Document = button.Button("Document",(0,755),globalVar.screen)
-        b_NewGame = button.Button("NewGame",(320,755),globalVar.screen)
-        b_Continue = button.Button("Continue",(640,755),globalVar.screen)
-        b_Config = button.Button("Config",(960,755),globalVar.screen)
-        # b_Config.button = pygame.rect.Rect((b_Config.pos[0], b_Config.pos[1]), (130, 30))
-        b_Exit = button.Button("Exit",(1280,755),globalVar.screen)
+        x_win, y_win = globalVar.screen.get_size()
+        b_Document = button.Button("Document",(0*x_win/1600,755*y_win/900),globalVar.screen)
+        b_NewGame = button.Button("NewGame",(320*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Continue = button.Button("Continue",(640*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Config = button.Button("Config",(960*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Exit = button.Button("Exit",(1280*x_win/1600,755*y_win/900),globalVar.screen)
         globalVar.buttons = [b_Document, b_NewGame, b_Continue, b_Config, b_Exit]
         globalVar.subState = [None]*5
         globalVar.subState[0] = "flashIn"
@@ -65,6 +65,12 @@ def startScenenLogic():
         globalVar.subState[2] = "unclicked"
 
     if globalVar.sceneTimer >= 200:
+        x_win, y_win = globalVar.screen.get_size()
+        b_Document = button.Button("Document",(0*x_win/1600,755*y_win/900),globalVar.screen)
+        b_NewGame = button.Button("NewGame",(320*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Continue = button.Button("Continue",(640*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Config = button.Button("Config",(960*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Exit = button.Button("Exit",(1280*x_win/1600,755*y_win/900),globalVar.screen)
         selectSubInStartSceneStateMachine()
         
     globalVar.sceneTimer = globalVar.sceneTimer + 1
@@ -132,6 +138,8 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 globalVar.sceneTimer = 299
+            if globalVar.buttons[4].check_clicked(): #b_Exit
+                pygame.quit()
         case "flashOut":
             animator.pointLinerAnimator(globalVar.objectPool[1],globalVar.animationPool[19])
             if globalVar.objectPool[1][6][4] >= globalVar.animationPool[19]["length"]:
@@ -151,6 +159,8 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 globalVar.sceneTimer = 299
+            if globalVar.buttons[4].check_clicked(): #b_Exit
+                pygame.quit()
         case "flashIn":
             animator.pointLinerAnimator(globalVar.objectPool[1],globalVar.animationPool[18])
             if globalVar.objectPool[1][6][4] >= globalVar.animationPool[18]["length"]:
@@ -171,6 +181,8 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 globalVar.sceneTimer = 299
+            if globalVar.buttons[4].check_clicked(): #b_Exit
+                pygame.quit()
         case "clickedFlashIn":
             if globalVar.sceneTimer < 315:
                 for i in range(3,11):
@@ -236,3 +248,9 @@ def selectSubInStartSceneStateMachine():
                 animator.pointLinerAnimator(globalVar.objectPool[46],globalVar.animationPool[15])
                 for i in range(47,53):
                     animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[9])
+
+            if globalVar.sceneTimer >= 420:
+                def eptBlock():
+                    pass
+                globalVar.currentDrawBlock = eptBlock
+                globalVar.currentUpdateBlock = mouse_movement.game()

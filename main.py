@@ -24,7 +24,7 @@ if codeString == '':
 else:
     exec(codeString)
 
-globalVar.screen = pygame.display.set_mode((globalVar.res_w,globalVar.res_h))
+globalVar.screen = pygame.display.set_mode((globalVar.res_w,globalVar.res_h),pygame.RESIZABLE)
 pygame.display.set_caption('ver0.001')
 clock = pygame.time.Clock()
 
