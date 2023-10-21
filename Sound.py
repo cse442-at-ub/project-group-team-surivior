@@ -3,7 +3,6 @@ import pygame
 volm = 0.7
 vole = 1
 
-
 def play_music(text):
     pygame.mixer.music.load(text)
     pygame.mixer.music.set_volume(volm)
