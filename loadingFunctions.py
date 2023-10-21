@@ -107,6 +107,7 @@ def startSceneAssetLoading():
         imagePathArray.append('asset/startScene/CharFrame/ys/'+str(i)+'.png') #47
 
     imagePathArray.append('asset/startScene/DRISText.png') #48
+    imagePathArray.append('asset/startScene/map.png') #49
 
     globalVar.assetPool = [None]*50
     # pygame.mixer.music.load('asset/disclaimerScene/disclaimer.wav')
@@ -164,7 +165,7 @@ def startSceneAssetLoading():
     globalVar.objectPool[43] = [-17,530,1,0,0,0,None,None] #horiBlock
     globalVar.objectPool[44] = [125,180,1,0,0,0,None,None] #vertBlock
 
-    globalVar.objectPool[45] = [0,0,1,0,0,0,None,None] #map
+    globalVar.objectPool[45] = [0,-695,1,0,0,0,None,None] #map
 
     globalVar.objectPool[46] = [750,653,1,0,0,0,None,None] #charShdw
     globalVar.objectPool[47] = [132,408,1,0,0,0,None,None] #lock1
@@ -186,9 +187,9 @@ def startSceneAssetLoading():
 
     backScreenFlashInAnim = {}
     backScreenFlashInAnim[0] = [255,20]
-    backScreenFlashInAnim[20] = [225*0.43,40]
-    backScreenFlashInAnim[40] = [225*0.21,60]
-    backScreenFlashInAnim[60] = [225*0.11,120]
+    backScreenFlashInAnim[20] = [255*0.43,40]
+    backScreenFlashInAnim[40] = [255*0.21,60]
+    backScreenFlashInAnim[60] = [255*0.11,120]
     backScreenFlashInAnim[120] = [0,0]
     backScreenFlashInAnim["prpty"] = 4
     backScreenFlashInAnim["length"] = 120
@@ -196,23 +197,23 @@ def startSceneAssetLoading():
 
     selectionFlashInAnim = {}
     selectionFlashInAnim[0] = [0,5]
-    selectionFlashInAnim[5] = [225*0.48,10]
-    selectionFlashInAnim[10] = [225*0.68,20]
-    selectionFlashInAnim[20] = [225*0.89,30]
-    selectionFlashInAnim[30] = [225*0.98,40]
-    selectionFlashInAnim[40] = [225,0]
+    selectionFlashInAnim[5] = [255*0.48,10]
+    selectionFlashInAnim[10] = [255*0.68,20]
+    selectionFlashInAnim[20] = [255*0.89,30]
+    selectionFlashInAnim[30] = [255*0.98,40]
+    selectionFlashInAnim[40] = [255,0]
     selectionFlashInAnim["prpty"] = 4
     selectionFlashInAnim["length"] = 40
     selectionFlashInAnim["loopType"] = "const"
 
     titleAndSubTransFlashInAnim = {}
     titleAndSubTransFlashInAnim[0] = [0,5]
-    titleAndSubTransFlashInAnim[5] = [225*0.30,15]
-    titleAndSubTransFlashInAnim[15] = [225*0.59,25]
-    titleAndSubTransFlashInAnim[25] = [225*0.75,35]
-    titleAndSubTransFlashInAnim[35] = [225*0.85,50]
-    titleAndSubTransFlashInAnim[50] = [225*0.94,80]
-    titleAndSubTransFlashInAnim[80] = [225,0]
+    titleAndSubTransFlashInAnim[5] = [255*0.30,15]
+    titleAndSubTransFlashInAnim[15] = [255*0.59,25]
+    titleAndSubTransFlashInAnim[25] = [255*0.75,35]
+    titleAndSubTransFlashInAnim[35] = [255*0.85,50]
+    titleAndSubTransFlashInAnim[50] = [255*0.94,80]
+    titleAndSubTransFlashInAnim[80] = [255,0]
     titleAndSubTransFlashInAnim["prpty"] = 4
     titleAndSubTransFlashInAnim["length"] = 80
     titleAndSubTransFlashInAnim["loopType"] = "const"
@@ -256,12 +257,12 @@ def startSceneAssetLoading():
     titleShadwYmoveFlashInAnim["loopType"] = "const"
 
     charCoverFlashOutAnim = {}
-    charCoverFlashOutAnim[0] = [225,7]
-    charCoverFlashOutAnim[7] = [225*0.96,15]
-    charCoverFlashOutAnim[15] = [225*0.84,30]
-    charCoverFlashOutAnim[30] = [225*0.5,45]
-    charCoverFlashOutAnim[45] = [225*0.16,53]
-    charCoverFlashOutAnim[53] = [225*0.04,60]
+    charCoverFlashOutAnim[0] = [255,7]
+    charCoverFlashOutAnim[7] = [255*0.96,15]
+    charCoverFlashOutAnim[15] = [255*0.84,30]
+    charCoverFlashOutAnim[30] = [255*0.5,45]
+    charCoverFlashOutAnim[45] = [255*0.16,53]
+    charCoverFlashOutAnim[53] = [255*0.04,60]
     charCoverFlashOutAnim[60] = [0,0]
     charCoverFlashOutAnim["prpty"] = 4
     charCoverFlashOutAnim["length"] = 60
@@ -269,33 +270,33 @@ def startSceneAssetLoading():
 
     charFlashInAnim = {}
     charFlashInAnim[0] = [0,5]
-    charFlashInAnim[5] = [225*0.16,10]
-    charFlashInAnim[10] = [225*0.5,15]
-    charFlashInAnim[15] = [225*0.84,20]
-    charFlashInAnim[20] = [225*1,0]
+    charFlashInAnim[5] = [255*0.16,10]
+    charFlashInAnim[10] = [255*0.5,15]
+    charFlashInAnim[15] = [255*0.84,20]
+    charFlashInAnim[20] = [255*1,0]
     charFlashInAnim["prpty"] = 4
     charFlashInAnim["length"] = 20
     charFlashInAnim["loopType"] = "const"
 
     customMenuFlashInAnim = {}
     customMenuFlashInAnim[0] = [0,10]
-    customMenuFlashInAnim[10] = [225*0.27,20]
-    customMenuFlashInAnim[20] = [225*0.63,30]
-    customMenuFlashInAnim[30] = [225*0.90,40]
-    customMenuFlashInAnim[40] = [225*1,0]
+    customMenuFlashInAnim[10] = [255*0.27,20]
+    customMenuFlashInAnim[20] = [255*0.63,30]
+    customMenuFlashInAnim[30] = [255*0.90,40]
+    customMenuFlashInAnim[40] = [255*1,0]
     customMenuFlashInAnim["prpty"] = 4
     customMenuFlashInAnim["length"] = 40
     customMenuFlashInAnim["loopType"] = "const"
 
     customMenuFlashOutTransAnim = {}
-    customMenuFlashOutTransAnim[0] = [1,5]
-    customMenuFlashOutTransAnim[5] = [225*0.74,15]
-    customMenuFlashOutTransAnim[15] = [225*0.63,35]
-    customMenuFlashOutTransAnim[35] = [225*0.90,55]
-    customMenuFlashOutTransAnim[55] = [225*1,75]
-    customMenuFlashOutTransAnim[75] = [225*1,100]
-    customMenuFlashOutTransAnim[100] = [225*1,120]
-    customMenuFlashOutTransAnim[120] = [225*1,0]
+    customMenuFlashOutTransAnim[0] = [255,5]
+    customMenuFlashOutTransAnim[5] = [255*0.74,15]
+    customMenuFlashOutTransAnim[15] = [255*0.51,35]
+    customMenuFlashOutTransAnim[35] = [255*0.27,55]
+    customMenuFlashOutTransAnim[55] = [255*0.13,75]
+    customMenuFlashOutTransAnim[75] = [255*0.06,100]
+    customMenuFlashOutTransAnim[100] = [255*0.01,120]
+    customMenuFlashOutTransAnim[120] = [255*0,0]
     customMenuFlashOutTransAnim["prpty"] = 4
     customMenuFlashOutTransAnim["length"] = 120
     customMenuFlashOutTransAnim["loopType"] = "const"
@@ -303,7 +304,7 @@ def startSceneAssetLoading():
     customMenuFlashOutYAnim = {}
     customMenuFlashOutYAnim[0] = [445,120]
     customMenuFlashOutYAnim[120] = [535,0]
-    customMenuFlashOutYAnim["prpty"] = 2
+    customMenuFlashOutYAnim["prpty"] = 1
     customMenuFlashOutYAnim["length"] = 120
     customMenuFlashOutYAnim["loopType"] = "const"
 
@@ -340,34 +341,33 @@ def startSceneAssetLoading():
     charNameFadeAnim["loopType"] = "const"
 
     charMoveInYAnim = {}
-    charMoveInYAnim[0] = [600,25]
-    charMoveInYAnim[25] = [580,50]
-    charMoveInYAnim[50] = [536,75]
-    charMoveInYAnim[75] = [483,100]
-    charMoveInYAnim[100] = [442,120]
+    charMoveInYAnim[0] = [600,10]
+    charMoveInYAnim[10] = [560,20]
+    charMoveInYAnim[20] = [470,35]
+    charMoveInYAnim[35] = [425,50]
+    charMoveInYAnim[50] = [405,75]
+    charMoveInYAnim[75] = [400,120]
     charMoveInYAnim[120] = [430,0]
-    charMoveInYAnim["prpty"] = 2
+    charMoveInYAnim["prpty"] = 1
     charMoveInYAnim["length"] = 120
     charMoveInYAnim["loopType"] = "const"
 
     mapMoveInYAnim = {}
-    mapMoveInYAnim[0] = [105,25]
-    mapMoveInYAnim[25] = [120,50]
-    mapMoveInYAnim[50] = [156,75]
-    mapMoveInYAnim[75] = [197,100]
-    mapMoveInYAnim[100] = [230,120]
-    mapMoveInYAnim[120] = [240,0]
-    mapMoveInYAnim["prpty"] = 2
+    mapMoveInYAnim[0] = [-695,35]
+    mapMoveInYAnim[35] = [-622,75]
+    mapMoveInYAnim[75] = [-570,120]
+    mapMoveInYAnim[120] = [-540,0]
+    mapMoveInYAnim["prpty"] = 1
     mapMoveInYAnim["length"] = 120
     mapMoveInYAnim["loopType"] = "const"
 
     mapFlashInAnim = {}
-    mapFlashInAnim[0] = [0,25]
-    mapFlashInAnim[25] = [11,50]
-    mapFlashInAnim[50] = [38,75]
-    mapFlashInAnim[75] = [68,100]
-    mapFlashInAnim[100] = [93,120]
-    mapFlashInAnim[120] = [100,0]
+    mapFlashInAnim[0] = [0*2.55,25]
+    mapFlashInAnim[25] = [11*2.55,50]
+    mapFlashInAnim[50] = [38*2.55,75]
+    mapFlashInAnim[75] = [68*2.55,100]
+    mapFlashInAnim[100] = [93*2.55,120]
+    mapFlashInAnim[120] = [100*2.55,0]
     mapFlashInAnim["prpty"] = 4
     mapFlashInAnim["length"] = 120
     mapFlashInAnim["loopType"] = "const"
@@ -397,7 +397,7 @@ def startSceneAssetLoading():
     newGameMassFlashOutYAnim = {}
     newGameMassFlashOutYAnim[0] = [800,15]
     newGameMassFlashOutYAnim[15] = [805,0]
-    newGameMassFlashOutYAnim["prpty"] = 2
+    newGameMassFlashOutYAnim["prpty"] = 1
     newGameMassFlashOutYAnim["length"] = 15
     newGameMassFlashOutYAnim["loopType"] = "const"
 
@@ -424,11 +424,35 @@ def startSceneAssetLoading():
     charCover24FlashInAnim["loopType"] = "const"
 
     midCharShutterFlashoutAnim = {}
-    midCharShutterFlashoutAnim[0] = [225,15]
+    midCharShutterFlashoutAnim[0] = [255,15]
     midCharShutterFlashoutAnim[15] = [255*0.25,0]
     midCharShutterFlashoutAnim["prpty"] = 4
     midCharShutterFlashoutAnim["length"] = 15
     midCharShutterFlashoutAnim["loopType"] = "const"
+
+    charCover15FlashInAnim2 = {}
+    charCover15FlashInAnim2[0] = [255*0.75,5]
+    charCover15FlashInAnim2[5] = [255,10]
+    charCover15FlashInAnim2[10] = [255,0]
+    charCover15FlashInAnim2["prpty"] = 4
+    charCover15FlashInAnim2["length"] = 10
+    charCover15FlashInAnim2["loopType"] = "const"
+    
+    charCover24FlashInAnim2 = {}
+    charCover24FlashInAnim2[0] = [255*0.25,5]
+    charCover24FlashInAnim2[5] = [255*0.75,10]
+    charCover24FlashInAnim2[10] = [255,0]
+    charCover24FlashInAnim2["prpty"] = 4
+    charCover24FlashInAnim2["length"] = 10
+    charCover24FlashInAnim2["loopType"] = "const"
+
+    charCover3FlashInAnim2 = {}
+    charCover3FlashInAnim2[0] = [0,5]
+    charCover3FlashInAnim2[5] = [0,10]
+    charCover3FlashInAnim2[10] = [255,0]
+    charCover3FlashInAnim2["prpty"] = 4
+    charCover3FlashInAnim2["length"] = 10
+    charCover3FlashInAnim2["loopType"] = "const"
 
     globalVar.animationPool = [None]*30
 
@@ -459,6 +483,9 @@ def startSceneAssetLoading():
     globalVar.animationPool[23] = charCover15FlashInAnim
     globalVar.animationPool[24] = charCover24FlashInAnim
     globalVar.animationPool[25] = midCharShutterFlashoutAnim
+    globalVar.animationPool[26] = charCover15FlashInAnim2
+    globalVar.animationPool[27] = charCover24FlashInAnim2
+    globalVar.animationPool[28] = charCover3FlashInAnim2
 
 def testFirstLoadingSceneAssetLoad():
     # Check if all image loading threads are done

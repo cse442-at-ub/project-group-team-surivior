@@ -11,6 +11,7 @@ ssv = []
 subState = []
 animationPool = []
 assetPool = []
+buttons = []
 imageThread = threading.Thread()
 sceneTimer = 0
 inputSystem = []

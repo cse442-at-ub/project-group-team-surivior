@@ -1,4 +1,4 @@
-import pygame,sys,threading,inputSys,sceneLogic,sceneDraw,globalVar
+import pygame,sys,threading,inputSys,sceneLogic,sceneDraw,globalVar,button
 
 # use python -m PyInstaller main.py to pack this floder into exe file
 
@@ -24,7 +24,7 @@ if codeString == '':
 else:
     exec(codeString)
 
-globalVar.screen = pygame.display.set_mode((globalVar.res_w,globalVar.res_h))
+globalVar.screen = pygame.display.set_mode((globalVar.res_w,globalVar.res_h),pygame.RESIZABLE)
 pygame.display.set_caption('ver0.001')
 clock = pygame.time.Clock()
 

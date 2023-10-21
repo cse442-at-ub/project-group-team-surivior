@@ -1,7 +1,8 @@
 import pygame,globalVar
 
 def drawBlack(object):
-    s = pygame.Surface((1600,900))
+    x_win, y_win = globalVar.screen.get_size()
+    s = pygame.Surface((x_win,y_win))
     s.set_alpha(object[4])
     s.fill((0,0,0))
     globalVar.screen.blit(s, (0, 0))
@@ -13,16 +14,22 @@ def drawBlack4Start():
     globalVar.screen.blit(s, (0, 0))
 
 def drawBlackBlock(object,w,h):
-    s = pygame.Surface((w,h))
+    x = object[0]
+    y = object[1]
+    x_win, y_win = globalVar.screen.get_size()
+    s = pygame.Surface((w*x_win/1600,h*y_win/900))
     s.set_alpha(object[4])
     s.fill((0,0,0))
-    globalVar.screen.blit(s, (object[0], object[1]))
+    globalVar.screen.blit(s,  (x*x_win/1600, y*y_win/900))
 
 def drawOneImageObject(frame,object,screen):
     x = object[0]
     y = object[1]
-    frame.set_alpha(object[4])
-    screen.blit(frame, (x, y))
+    x_win, y_win = screen.get_size()
+    x_img, y_img = frame.get_size()
+    image = pygame.transform.scale(frame, (x_img*x_win/1600,y_img*y_win/900))
+    image.set_alpha(object[4])
+    screen.blit(image, (x*x_win/1600, y*y_win/900))
 
 def fill(surface, color):
     w, h = surface.get_size()
@@ -32,20 +39,16 @@ def fill(surface, color):
             a = surface.get_at((x, y))[3]
             surface.set_at((x, y), pygame.Color(r, g, b, a))
 
-def drawOneImageObjectInColor(frame,object,screen,newColor):
-    x = object[0]
-    y = object[1]
-    frame = frame.copy
-    frame.fill((0,0,0,255))
-    frame.fill(newColor)
-    screen.blit(frame, (x, y))
-
 def drawArrayImageObject(frames,object,screen):
     x = object[0]
     y = object[1]
     frameNum = object[5]
-    frames[frameNum].set_alpha(object[4])
-    screen.blit(frames[frameNum], (x, y))
+    frame = frames[frameNum]
+    x_win, y_win = screen.get_size()
+    x_img, y_img = frame.get_size()
+    image = pygame.transform.scale(frame, (x_img*x_win/1600,y_img*y_win/900))
+    image.set_alpha(object[4])
+    screen.blit(image, (x*x_win/1600, y*y_win/900))
 
 def disclaimerDraw():
     drawArrayImageObject(globalVar.assetPool[1:61],globalVar.objectPool[0],globalVar.screen)
@@ -81,12 +84,9 @@ def startScenenDraw():
     drawOneImageObject(globalVar.assetPool[6],globalVar.objectPool[2],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[5],globalVar.objectPool[1],globalVar.screen)
     
-
-    drawOneImageObject(globalVar.assetPool[34],globalVar.objectPool[46],globalVar.screen)
     charFrameArray = []
     for i  in range(0,9):
         charFrameArray.append(globalVar.assetPool[i+39])
-    drawArrayImageObject(charFrameArray,globalVar.objectPool[27],globalVar.screen)
 
     drawOneImageObject(globalVar.assetPool[32],globalVar.objectPool[53],globalVar.screen)
 
@@ -115,7 +115,11 @@ def startScenenDraw():
     drawOneImageObject(globalVar.assetPool[21],globalVar.objectPool[29],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[17],globalVar.objectPool[28],globalVar.screen)
     
-
     plsFrameArray = [globalVar.assetPool[25],globalVar.assetPool[37],globalVar.assetPool[38]]
     drawArrayImageObject(plsFrameArray,globalVar.objectPool[34],globalVar.screen)
+
+    drawOneImageObject(globalVar.assetPool[49],globalVar.objectPool[45],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[34],globalVar.objectPool[46],globalVar.screen)
+    drawArrayImageObject(charFrameArray,globalVar.objectPool[27],globalVar.screen)
+
     drawBlack(globalVar.objectPool[0])
