@@ -5,6 +5,7 @@ import pygame
 import globalVar
 from os import listdir
 from os.path import isfile, join
+import Sound
 
 pygame.init()
 
@@ -59,6 +60,7 @@ def main(window):
     target_x, target_y = playerIMG.centerx, playerIMG.centery
 
     running = True
+    Sound.play_music('asset/bgm/GameBGM.wav')
     while running:
         clock.tick(FPS)
 
