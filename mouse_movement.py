@@ -1,6 +1,7 @@
 import pygame
 import math
 
+
 pygame.init()
 
 WIDTH, HEIGHT = 800, 600
@@ -18,6 +19,7 @@ moving = False
 target_x, target_y = character.centerx, character.centery
 
 running = True
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
