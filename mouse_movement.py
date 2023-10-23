@@ -1,19 +1,21 @@
 import pygame
 import math
+import Sound
 
 def game():
     pygame.init()
 
     WIDTH, HEIGHT = 800, 600
     ENEMY_SPEED = 1
-    CHARACTER_SPEED = 2  
+    CHARACTER_SPEED = 3  
     FPS = 60  
 
     WHITE = (255, 255, 255)
     RED = (255, 0, 0)
     GREEN = (0, 255, 0)
     BLUE = (0, 0, 255)
-    PINK = (255, 105, 180)  # RGB color code for pink
+    PINK= (255, 0, 255)  # RGB color code for pink
+    CYAN = (0, 255, 255)
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Character Chases Red Square")
@@ -26,10 +28,12 @@ def game():
     damage = 10  # Initial damage dealt by the enemy
     attack_timer = 0  # Timer for enemy attack
     color_change_timer = 0  # Timer for character color change
+    color_change_timer_heal = 0
 
     clock = pygame.time.Clock() 
 
     running = True
+    Sound.change_music('asset/bgm/GameBGM.wav')
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -38,7 +42,12 @@ def game():
                 if event.button == 1:  
                     character_x, character_y = pygame.mouse.get_pos()
                     moving = True
-
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r and health < 20:  # Heal when 'R' key is pressed and health is less than 20
+                    health += 10
+                    color_change_timer_heal = int(0.1 * FPS)  # Set color change timer to 0.1 seconds when healing
+                    character_color = CYAN  # Character turns green while healing
+                
         if moving:
             dx, dy = character_x - character.centerx, character_y - character.centery
             distance = math.sqrt(dx ** 2 + dy ** 2)
@@ -60,9 +69,13 @@ def game():
 
         attack_timer = max(0, attack_timer - 1)  # Decrease the attack timer
         color_change_timer = max(0, color_change_timer - 1)  # Decrease the color change timer
+        color_change_timer_heal = max(0, color_change_timer_heal - 1)  # Decrease the color change timer
 
         if color_change_timer > 0:
             character_color = GREEN  # Character turns green for 0.1 seconds after being attacked
+        elif color_change_timer_heal > 0:
+            character_color = CYAN  # Character turns green for 0.1 seconds after being attacked
+
         elif health <= 0:
             character_color = PINK  # Character turns pink when health reaches 0
         else:
