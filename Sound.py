@@ -1,7 +1,12 @@
 import pygame
+import globalVar
 
 volm = 0.7
 vole = 1
+
+def sound_sys_init():
+    globalVar.BGMVolume = 0.7
+    globalVar.SFXVolume = 1
 
 def play_music(text):
     pygame.mixer.music.load(text)
@@ -16,3 +21,12 @@ def play_sound_effect(text):
 def change_music(text):
     pygame.mixer.music.stop
     play_music(text)
+
+def increase_vol(kind):
+    if(kind < 1 ):
+        kind += 0.1
+    
+
+def decrease_vol(kind):
+    if(kind > 0):
+        kind -= 0.1 
