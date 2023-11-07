@@ -43,7 +43,7 @@ def startScenenLogic():
         startSceneMusicLogic()
         startSceneFIDocAndExitTextLogic()
         startSceneFIConfigAndNewgameTextLogic()
-        startSceneFIcontinueTextLogic()
+        # startSceneFIcontinueTextLogic()
         startSceneFIIntroTextLogic()
         startSceneFITitleLogic()
         startSceneFITitleShdwLogic()
@@ -81,11 +81,11 @@ def startSceneFIBlackSceneLogic():
         animator.pointLinerAnimator(globalVar.objectPool[0],globalVar.animationPool[0])
 def startSceneFIDocAndExitTextLogic():
     if globalVar.sceneTimer >= 120 and globalVar.sceneTimer < 160 :
-        animator.pointLinerAnimator(globalVar.objectPool[3],globalVar.animationPool[1])
+        # animator.pointLinerAnimator(globalVar.objectPool[3],globalVar.animationPool[1])
         animator.pointLinerAnimator(globalVar.objectPool[4],globalVar.animationPool[1])
 def startSceneFIConfigAndNewgameTextLogic():
     if globalVar.sceneTimer >= 100 and globalVar.sceneTimer < 140 :
-        animator.pointLinerAnimator(globalVar.objectPool[5],globalVar.animationPool[1])
+        # animator.pointLinerAnimator(globalVar.objectPool[5],globalVar.animationPool[1])
         animator.pointLinerAnimator(globalVar.objectPool[7],globalVar.animationPool[1])
 def startSceneFIcontinueTextLogic():
     if globalVar.sceneTimer >= 80 and globalVar.sceneTimer < 120 :
