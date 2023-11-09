@@ -40,5 +40,7 @@ res_w = 0
 res_h = 0 
 BGMVolume = 0
 SFXVolume = 0
+score = 0
+scoreboard = None
 
 screen = None

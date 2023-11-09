@@ -1,4 +1,4 @@
-import pygame,globalVar
+import pygame,globalVar,score
 
 def drawBlack(object):
     x_win, y_win = globalVar.screen.get_size()
@@ -132,6 +132,8 @@ def startScenenDraw():
     drawBlack(globalVar.objectPool[0])
 
 def ingameDraw():
+    globalVar.scoreboard = score.ScoreBoard()
+    globalVar.scoreboard.showScore()
     drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
