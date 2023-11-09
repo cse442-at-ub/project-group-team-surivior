@@ -1,5 +1,4 @@
-import loadingFunctions,sceneDraw,animator,globalVar,threading,button,pygame,mouse_movement,inputSys,Sound
-
+import loadingFunctions,sceneDraw,animator,globalVar,threading,button,pygame,Sound,math
 
 def beforeFirstLoadingLogic():
     if globalVar.sceneTimer == 0:
@@ -54,24 +53,18 @@ def startScenenLogic():
 
     if globalVar.sceneTimer == 200:
         x_win, y_win = globalVar.screen.get_size()
-        b_Document = button.Button("Document",(0*x_win/1600,755*y_win/900),globalVar.screen)
-        b_NewGame = button.Button("NewGame",(320*x_win/1600,755*y_win/900),globalVar.screen)
-        b_Continue = button.Button("Continue",(640*x_win/1600,755*y_win/900),globalVar.screen)
-        b_Config = button.Button("Config",(960*x_win/1600,755*y_win/900),globalVar.screen)
-        b_Exit = button.Button("Exit",(1280*x_win/1600,755*y_win/900),globalVar.screen)
-        globalVar.buttons = [b_Document, b_NewGame, b_Continue, b_Config, b_Exit]
+        # b_Document = button.Button("Document",(0*x_win/1600,755*y_win/900),globalVar.screen)
+        b_NewGame = button.Button("NewGame",(0*x_win/1600,755*y_win/900),globalVar.screen)
+        # b_Continue = button.Button("Continue",(640*x_win/1600,755*y_win/900),globalVar.screen)
+        # b_Config = button.Button("Config",(960*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Exit = button.Button("Exit",(800*x_win/1600,755*y_win/900),globalVar.screen)
+        globalVar.buttons = [b_NewGame,b_Exit]
         globalVar.subState = [None]*5
         globalVar.subState[0] = "flashIn"
         globalVar.subState[1] = 2
         globalVar.subState[2] = "unclicked"
 
-    if globalVar.sceneTimer >= 200:
-        x_win, y_win = globalVar.screen.get_size()
-        b_Document = button.Button("Document",(0*x_win/1600,755*y_win/900),globalVar.screen)
-        b_NewGame = button.Button("NewGame",(320*x_win/1600,755*y_win/900),globalVar.screen)
-        b_Continue = button.Button("Continue",(640*x_win/1600,755*y_win/900),globalVar.screen)
-        b_Config = button.Button("Config",(960*x_win/1600,755*y_win/900),globalVar.screen)
-        b_Exit = button.Button("Exit",(1280*x_win/1600,755*y_win/900),globalVar.screen)
+    if globalVar.sceneTimer > 200:
         selectSubInStartSceneStateMachine()
         
     globalVar.sceneTimer = globalVar.sceneTimer + 1
@@ -124,13 +117,13 @@ def startSceneMusicLogic():
 def selectSubInStartSceneStateMachine():
     match globalVar.subState[0]:
         case "static":
-            for i in range(0,5):
+            for i in range(0,1):
                 if globalVar.buttons[i].check_collided() and globalVar.subState[1] != i: 
                     globalVar.subState[0] = "flashOut"
                     globalVar.subState[1] = i
                     globalVar.objectPool[1][4] = 255
                     globalVar.objectPool[1][6][4] = 0
-            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[1].check_collided():
+            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
                 globalVar.subState[0] = "clickedFlashIn"
                 globalVar.objectPool[1][4] = 1
                 globalVar.objectPool[1][0] = globalVar.ssv[0][globalVar.subState[1]]
@@ -139,7 +132,7 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 globalVar.sceneTimer = 299
-            if globalVar.buttons[4].check_clicked(): #b_Exit
+            if globalVar.buttons[1].check_clicked(): #b_Exit
                 pygame.quit()
         case "flashOut":
             animator.pointLinerAnimator(globalVar.objectPool[1],globalVar.animationPool[19])
@@ -148,10 +141,10 @@ def selectSubInStartSceneStateMachine():
                 globalVar.objectPool[1][4] = 0
                 globalVar.objectPool[1][0] = globalVar.ssv[0][globalVar.subState[1]]
                 globalVar.objectPool[1][6][4] = 0
-            for i in range(0,5):
+            for i in range(0,1):
                 if globalVar.buttons[i].check_collided() and globalVar.subState[1] != i: 
                     globalVar.subState[1] = i
-            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[1].check_collided():
+            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
                 globalVar.subState[0] = "clickedFlashIn"
                 globalVar.objectPool[1][4] = 1
                 globalVar.objectPool[1][0] = globalVar.ssv[0][globalVar.subState[1]]
@@ -160,20 +153,20 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 globalVar.sceneTimer = 299
-            if globalVar.buttons[4].check_clicked(): #b_Exit
+            if globalVar.buttons[1].check_clicked(): #b_Exit
                 pygame.quit()
         case "flashIn":
             animator.pointLinerAnimator(globalVar.objectPool[1],globalVar.animationPool[18])
             if globalVar.objectPool[1][6][4] >= globalVar.animationPool[18]["length"]:
                 globalVar.subState[0] == "static"
                 globalVar.objectPool[1][4] = 255
-            for i in range(0,5):
+            for i in range(0,1):
                 if globalVar.buttons[i].check_collided() and globalVar.subState[1] != i: 
                     globalVar.subState[0] = "flashOut"
                     globalVar.subState[1] = i
                     globalVar.objectPool[1][4] = 255
                     globalVar.objectPool[1][6][4] = 0
-            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[1].check_collided():
+            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
                 globalVar.subState[0] = "clickedFlashIn"
                 globalVar.objectPool[1][4] = 1
                 globalVar.objectPool[1][0] = globalVar.ssv[0][globalVar.subState[1]]
@@ -182,7 +175,7 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 globalVar.sceneTimer = 299
-            if globalVar.buttons[4].check_clicked(): #b_Exit
+            if globalVar.buttons[1].check_clicked(): #b_Exit
                 pygame.quit()
         case "clickedFlashIn":
             if globalVar.sceneTimer < 315:
@@ -251,7 +244,79 @@ def selectSubInStartSceneStateMachine():
                     animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[9])
 
             if globalVar.sceneTimer >= 420:
-                def eptBlock():
-                    pass
-                globalVar.currentDrawBlock = eptBlock
-                globalVar.currentUpdateBlock = mouse_movement.game()
+                globalVar.subStateMachineArray = {}
+                globalVar.objectPool = []
+                globalVar.buttons = []
+                globalVar.animationPool = []
+                globalVar.assetPool = []
+                globalVar.sceneTimer = 0
+                loadingFunctions.ingameAssetLoad()
+                globalVar.health = 20  # Character's initial health
+                globalVar.damage = 10  # Initial damage dealt by the enemy
+                globalVar.attack_timer = 0  # Timer for enemy attack
+                globalVar.color_change_timer = 0  # Timer for character color change
+                globalVar.color_change_timer_heal = 0
+                globalVar.currentUpdateBlock = ingameScene
+                globalVar.currentDrawBlock = sceneDraw.ingameDraw
+                globalVar.character_x = 0
+                globalVar.character_y = 0
+                globalVar.charMoving = False
+                globalVar.enemyMoving = False
+
+def ingameScene():
+    if globalVar.inputSystem["commandState"][10] == "Pressing":  
+        globalVar.character_x, globalVar.character_y = pygame.mouse.get_pos()
+        x_win, y_win = globalVar.screen.get_size()
+        globalVar.character_x = globalVar.character_x/x_win*1600
+        globalVar.character_y = globalVar.character_y/y_win*900
+        globalVar.charMoving = True
+        # elif event.type == pygame.KEYDOWN:
+        #     if event.key == pygame.K_r and health < 20:  # Heal when 'R' key is pressed and health is less than 20
+        #         health += 10
+                #    globalVar.color_change_timer_heal = int(0.1 * 60)  # Set color change timer to 0.1 seconds when healing
+                
+    if globalVar.charMoving:
+        dx, dy = globalVar.character_x - (globalVar.objectPool[0][0]+30), globalVar.character_y - (globalVar.objectPool[0][1]+80)
+        distance = math.sqrt(dx ** 2 + dy ** 2)
+
+        if abs(dx) <= 3 and abs(dy) <= 3:
+            globalVar.charMoving = False
+
+        if distance > 0:
+            dx /= distance
+            dy /= distance
+
+            globalVar.objectPool[0][0]+= dx * 3
+            globalVar.objectPool[0][1] += dy * 3
+            globalVar.objectPool[1][0]+= dx * 3
+            globalVar.objectPool[1][1] += dy * 3
+
+    dx, dy = (globalVar.objectPool[0][0]+30) - (globalVar.objectPool[2][0]+60), (globalVar.objectPool[0][1]+80) - (globalVar.objectPool[2][1]+90)
+    distance = math.sqrt(dx ** 2 + dy ** 2)
+    if abs(dx) > 3 and abs(dy) > 3:
+        globalVar.enemyMoving = True
+    if globalVar.enemyMoving:
+
+        if distance > 0:
+            dx /= distance
+            dy /= distance
+
+            globalVar.objectPool[2][0]+= dx * 2
+            globalVar.objectPool[2][1] += dy * 2
+            globalVar.objectPool[3][0]+= dx * 2
+            globalVar.objectPool[3][1] += dy * 2
+
+        dx, dy = (globalVar.objectPool[0][0]+30) - (globalVar.objectPool[2][0]+60), (globalVar.objectPool[0][1]+80) - (globalVar.objectPool[2][1]+90)
+        distance = math.sqrt(dx ** 2 + dy ** 2)
+        if abs(dx) > 3 and abs(dy) > 3:
+            globalVar.enemyMoving = True
+        
+
+        if globalVar.health > 0 and distance <= 15 and globalVar.attack_timer <= 0:  
+            globalVar.health -= globalVar.damage  # Reduce character's health
+            globalVar.attack_timer = 60  # Set the attack timer to 1 second (FPS frames)
+            # globalVar.color_change_timer = int(0.1 * 60)  # Set color change timer to 0.1 seconds
+
+        globalVar.attack_timer = max(0, globalVar.attack_timer - 1)  # Decrease the attack timer
+        # globalVar.color_change_timer = max(0, globalVar.color_change_timer - 1)  # Decrease the color change timer
+        # globalVar.color_change_timer_heal = max(0, globalVar.color_change_timer_heal - 1)  # Decrease the color change timer
