@@ -1,7 +1,5 @@
 import threading
-from items import *
-from item_synthesis_path import *
-from Unique_items_specific import *
+from rune_keystone import Lethal_Tempo, Conqueror, Dark_Harvest, Grasp_of_the_Undying
 
 currentUpdateBlock = None
 currentDrawBlock = None
@@ -9,36 +7,18 @@ currentDrawBlock = None
 subStateMachineArray = {}
 
 objectPool = []
-buttons = []
-ssv = []
-subState = []
 animationPool = []
 assetPool = []
-buttons = []
 imageThread = threading.Thread()
 sceneTimer = 0
-item = [gold, 
-        your_choice, 
-        shoes, 
-        start_items, 
-        epic_items, 
-        legendary_items, 
-        doran_series, 
-        unique_shoes,
-        unique_epic_items, 
-        unique_legendary_items,
-        supplies]
-item_synthesis_path = [item_synthesis_path,
-                       epic_item_synthesis_path,
-                       epic_unique_item_synthesis_path,
-                       legendary_items_synthesis_path,
-                       legendary_unique_items_synthesis_path]
-unique_item = [doran_ring(),
-               doran_shield(),
-               plated_shoe()]
 res_w = 0 
 res_h = 0 
 BGMVolume = 0
 SFXVolume = 0
 
 screen = None
+
+if 'Lethal_Tempo' in globals() and 'Conqueror' in globals() and 'Dark_Harvest' in globals() and 'Grasp_of_the_Undying' in globals():
+    print("Rune Keystone classes are available in goldVar.py")
+else:
+    print("Rune Keystone classes are not available in goldVar.py")
