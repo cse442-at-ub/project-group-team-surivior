@@ -8,6 +8,10 @@ def sound_sys_init():
     globalVar.BGMVolume = 0.7
     globalVar.SFXVolume = 1
 
+def sound_sys_init():
+    globalVar.BGMVolume = 0.7
+    globalVar.SFXVolume = 1
+
 def play_music(text):
     pygame.mixer.music.load(text)
     pygame.mixer.music.set_volume(volm)
