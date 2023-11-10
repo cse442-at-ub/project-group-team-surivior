@@ -9,4 +9,10 @@ class ScoreBoard():
     def showScore(self):
         str_score = "Score: " + str(self.score) # change int to str
         self.score_image = self.font.render(str_score, False, self.text_color) # turn str to Surface object
-        globalVar.screen.blit(self.score_image,(0,0))
+        self.score_rect = self.score_image.get_rect(center=(1500, 50)) # 获取分数图形的坐标位置
+        x = self.score_rect.x
+        y = self.score_rect.y
+        x_win, y_win = globalVar.screen.get_size()
+        x_img, y_img = self.score_image.get_size()
+        image = pygame.transform.scale(self.score_image, (x_img*x_win/1600,y_img*y_win/900))
+        globalVar.screen.blit(image, (x*x_win/1600, y*y_win/900))
