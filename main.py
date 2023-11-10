@@ -1,4 +1,4 @@
-import pygame,sys,threading,inputSys,sceneLogic,sceneDraw,globalVar,button
+import pygame,sys,threading,inputSys,sceneLogic,sceneDraw,globalVar
 
 # use python -m PyInstaller main.py to pack this floder into exe file
 
@@ -52,6 +52,7 @@ while 1:
     for i in range(0,13):
         inputDebuger[i] = my_font.render(globalVar.inputSystem["commandState"][i], False, (255, 255, 255))
         globalVar.screen.blit(inputDebuger[i], (0,i*15))
-
+    if globalVar.scoreboard != None:
+        globalVar.scoreboard.showScore()
     pygame.display.update()
     clock.tick(60)
