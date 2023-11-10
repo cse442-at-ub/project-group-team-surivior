@@ -132,6 +132,9 @@ def startScenenDraw():
     drawBlack(globalVar.objectPool[0])
 
 def ingameDraw():
+    x_win, y_win = globalVar.screen.get_size()
+    if y_win !=  x_win//16*9:
+        globalVar.screen = pygame.display.set_mode((x_win, x_win//16*9), pygame.RESIZABLE) 
     drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
