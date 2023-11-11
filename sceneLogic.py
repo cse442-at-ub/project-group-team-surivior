@@ -274,7 +274,7 @@ def ingameScene():
 
 
     if globalVar.inputSystem["commandState"][3] == "Pressing" and globalVar.health < 10: 
-        if globalVar.fps >= 120:   
+        if globalVar.fps >= 180:   
             globalVar.health += 1
             globalVar.fps = 0
 
