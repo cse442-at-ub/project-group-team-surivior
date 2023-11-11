@@ -70,7 +70,6 @@ def drawArrayImageObject(frames,object,screen):
     screen.blit(image, (x*x_win/1600, y*y_win/900))
 
 def disclaimerDraw():
-    # This function now can work on window, mac should wait for fix.
     fixscreen()
     drawArrayImageObject(globalVar.assetPool[1:61],globalVar.objectPool[0],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[0],globalVar.objectPool[1],globalVar.screen)
@@ -81,7 +80,6 @@ def drawitembar():
         drawOneImageObject(globalVar.itemPool[globalVar.item_bar_list[i]],[i*60,0,1,0,255,0,None,None],globalVar.screen)
 
 def startScenenDraw():
-    # This function now can work on window, mac should wait for fix.
     fixscreen()
     drawOneImageObject(globalVar.assetPool[14],globalVar.objectPool[25],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[13],globalVar.objectPool[24],globalVar.screen)
@@ -153,7 +151,6 @@ def startScenenDraw():
 
 
 def ingameDraw():
-    # This function now can work on window, mac should wait for fix.
     fixscreen()
     drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen)
