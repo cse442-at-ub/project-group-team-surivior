@@ -22,6 +22,24 @@ def drawBlackBlock(object,w,h):
     s.fill((0,0,0))
     globalVar.screen.blit(s,  (x*x_win/1600, y*y_win/900))
 
+def drawHealthBarBackground():
+    x = 50
+    y = 845
+    x_win, y_win = globalVar.screen.get_size()
+    s = pygame.Surface((1500*x_win/1600,40*y_win/900))
+    s.set_alpha(255)
+    s.fill((255,0,0))
+    globalVar.screen.blit(s,  (x*x_win/1600, y*y_win/900))
+
+def drawHealthBar():
+    x = 50
+    y = 845
+    x_win, y_win = globalVar.screen.get_size()
+    s = pygame.Surface((1500*globalVar.health*0.1*x_win/1600,40*y_win/900))
+    s.set_alpha(255)
+    s.fill((255,255,20))
+    globalVar.screen.blit(s,  (x*x_win/1600, y*y_win/900))
+
 def drawOneImageObject(frame,object,screen):
     x = object[0]
     y = object[1]
@@ -141,3 +159,6 @@ def ingameDraw():
     minionFrameArray = [globalVar.assetPool[10]]
     drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
     drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen)
+    drawHealthBarBackground()
+    drawHealthBar()
+    

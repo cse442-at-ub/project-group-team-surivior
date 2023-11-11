@@ -251,8 +251,8 @@ def selectSubInStartSceneStateMachine():
                 globalVar.assetPool = []
                 globalVar.sceneTimer = 0
                 loadingFunctions.ingameAssetLoad()
-                globalVar.health = 20  # Character's initial health
-                globalVar.damage = 10  # Initial damage dealt by the enemy
+                globalVar.health = 10  # Character's initial health
+                globalVar.damage = 1  # Initial damage dealt by the enemy
                 globalVar.attack_timer = 0  # Timer for enemy attack
                 globalVar.color_change_timer = 0  # Timer for character color change
                 globalVar.color_change_timer_heal = 0
@@ -262,6 +262,7 @@ def selectSubInStartSceneStateMachine():
                 globalVar.character_y = 0
                 globalVar.charMoving = False
                 globalVar.enemyMoving = False
+                globalVar.fps = 60
 
 def ingameScene():
     if globalVar.inputSystem["commandState"][10] == "Pressing":  
@@ -270,11 +271,7 @@ def ingameScene():
         globalVar.character_x = globalVar.character_x/x_win*1600
         globalVar.character_y = globalVar.character_y/y_win*900
         globalVar.charMoving = True
-        # elif event.type == pygame.KEYDOWN:
-        #     if event.key == pygame.K_r and health < 20:  # Heal when 'R' key is pressed and health is less than 20
-        #         health += 10
-                #    globalVar.color_change_timer_heal = int(0.1 * 60)  # Set color change timer to 0.1 seconds when healing
-                
+
     if globalVar.charMoving:
         dx, dy = globalVar.character_x - (globalVar.objectPool[0][0]+30), globalVar.character_y - (globalVar.objectPool[0][1]+80)
         distance = math.sqrt(dx ** 2 + dy ** 2)
