@@ -1,167 +1,119 @@
-import pygame
-from items import *
-from item_synthesis import *
-from Distance import *
+from items import ITEMS
+class Role:
+    def __init__(self,
+                 name,
+                 current_gold,
+                 max_health, current_health, current_health_regen,
+                 max_mana, current_mana, current_mana_regen,
+                 current_physical_damage_number, current_magical_damage_number,
+                 current_armor, current_lethality, current_armor_penetration,
+                 current_magic_resistance, current_ability_power, current_magic_penetration,
+                 current_true_damage,
+                 current_attack_speed, current_moving_speed,
+                 current_ability_haste,
+                 current_lifesteal, current_omnivamp,
+                 current_level,
+                 rune_keystone):
+        self.name = name
+        self.current_gold = current_gold
+        self.current_ability_power = current_ability_power
+        self.current_health = current_health
+        self.max_health = max_health
+        self.current_health_regen = current_health_regen
+        self.current_mana = current_mana
+        self.max_mana = max_mana
+        self.current_mana_regen = current_mana_regen
+        self.current_physical_damage_number = current_physical_damage_number
+        self.current_magical_damage_number = current_magical_damage_number
+        self.current_true_damage = current_true_damage
+        self.current_attack_speed = current_attack_speed
+        self.current_moving_speed = current_moving_speed
+        self.current_armor = current_armor
+        self.current_lethality = current_lethality
+        self.current_armor_penetration = current_armor_penetration
+        self.current_magic_resistance = current_magic_resistance
+        self.current_magic_penetration = current_magic_penetration
+        self.current_ability_haste = current_ability_haste
+        self.current_lifesteal = current_lifesteal
+        self.current_omnivamp = current_omnivamp
+        self.current_level = current_level
+        self.rune_keystone = rune_keystone
 
+    exp_to_upgrade = 600
+    current_exp = 0
+    exp = 20
 
-character = {}
+    def apply_item_to_role(role, item_names):
+        current = ITEMS.head
+        while current:
+            if current.name in item_names:
+                for attribute, value in current.data.items():
+                    if hasattr(role, attribute):
+                        setattr(role, attribute, getattr(role, attribute) + value)
+            current = current.next
+        return role
+        """
+        the above function returns an object, if you want to check if the item's attributes applys to characetr,
+        using the following line of code, change the role.attribute based on your need. (go to check.py)
+        print(f"Updated Health: {yasuo.current_health}")
+        """
+    
+    # upgrade just valid for character instead of enemy
+    def upgrade(self):
+        if self.current_exp >= self.exp_to_upgrade and self.current_level < 18:
+            self.current_level += 1
+            self.current_exp -= self.exp_to_upgrade
+            self.exp_to_upgrade += 200  # Increase the exp required for the next level
+            upgrades = {
+                'max_health': 20,
+                'current_health': 20,
+                'current_health_regen': 0.1,
+                'max_mana': 10,
+                'current_mana': 10,
+                'current_mana_regen': 0.08,
+                'current_physical_damage_number': 5,
+                'current_magical_damage_number': 0,
+                'current_armor': 5,
+                'current_lethality': 0,
+                'current_armor_penetration': 0.0,
+                'current_magic_resistance': 3,
+                'current_ability_power': 0,
+                'current_magic_penetration': 0.0,
+                'current_true_damage': 0,
+                'current_attack_speed': 0.08,
+                'current_moving_speed': 0,
+                'current_ability_haste': 0,
+                'current_lifesteal': 0,
+                'current_omnivamp': 0,
+                'current_level': 1,
+                'rune_keystone': 0
+            }
 
-#Character Basic Attributes
-character['yasuo'] = [
-    #health 0
-    650,
-    #Growing Attack Health 1
-    50,
-    #mana 2
-    400,
-    #Growing Attack Mana 3
-    30,
-    #attack damage 4
-    68,
-    #Growing Attack Power 5
-    5,
-    #ability power 6
-    0,
-    #attack speed 7
-    0.75, # Attacks per second
-    #Growing Attack Speed 8
-    0.08,
-    #Movement 9
-    325,
-    #critical strike chance 10
-    0.00,
-    #armor 11
-    30,
-    #Growing Attack Armor 12
-    3,
-    #magic resistance 13
-    25,
-    #Growing Attack Magic Resistance 14
-    2,
-    #lethality 15
-    0,
-    #armor penetration 16
-    0.00,
-    #magic penetration 17
-    0.00,
-    #ability haste 18
-    0,
-    #lifesteal 19
-    0.00,
-    #omnivamp 20
-    0.00,
-    #health regen 21
-    1.5,
-    #Growing Attack Health Regen 22
-    0.5,
-    #mana regen 23
-    0.8,
-    #Growing Attack Mana Regen 24
-    0.3,
-    #Level 25
-    1,
-    #exp tp next level 26
-    300,
-    #normal attack with magic damage 27
-    0
-]
+            for attribute, value in upgrades.items():
+                setattr(self, attribute, getattr(self, attribute) + value)
 
-character_current_health = character['yasuo'][0]
-character_Growing_Attack_Health = character['yasuo'][1]
-character_current_mana = character['yasuo'][2]
-character_Growing_Attack_Mana = character['yasuo'][3]
-character_current_attack_damage = character['yasuo'][4]
-character_Growing_Attack_Power = character['yasuo'][5]
-character_current_ability_power = character['yasuo'][6]
-character_current_attack_speed = character['yasuo'][7]
-character_Growing_Attack_Speed = character['yasuo'][8]
-character_current_Movement = character['yasuo'][9]
-character_current_critical_strike_chance = character['yasuo'][10]
-character_current_armor = character['yasuo'][11]
-character_Growing_Attack_Armor = character['yasuo'][12]
-character_current_magic_resistance = character['yasuo'][13]
-character_Growing_Attack_Magic_Resistance = character['yasuo'][14]
-character_current_lethality = character['yasuo'][15]
-character_current_armor_penetration = character['yasuo'][16]
-character_current_magic_penetration = character['yasuo'][17]
-character_current_ability_haste = character['yasuo'][18]
-character_current_lifesteal = character['yasuo'][19]
-character_current_omnivamp = character['yasuo'][20]
-character_current_health_regen = character['yasuo'][21]
-character_Growing_Attack_Health_Regen = character['yasuo'][22]
-character_current_mana_regen = character['yasuo'][23]
-character_Growing_Attack_Mana_Regen = character['yasuo'][24]
-character_current_level = character['yasuo'][25]
-character_exp = character['yasuo'][26]
-character_normal_attack_with_magic_damage = character['yasuo'][27]
+    # only for characetr
+    def gain_exp(self):
+        if self.take_damage:
+            self.current_exp += 20
+            self.upgrade()
+    
+    # only for characetr
+    def gian_gold(self):
+        current_health = self.current_health.take_damage(self.current_magical_damage_number, self.current_physical_damage_number)
+        if current_health == 0:
+            self.current_gold += 50
+    
+    # For both
+    def take_damage(self, current_magical_damage_number, current_physical_damage_number):
+        physical_damage = current_physical_damage_number * (10 // self.current_armor)
+        magical_damage = current_magical_damage_number * (10 // self.current_magic_resistance)
 
-character_current_exp = 0
-
-# enemy basic attributes
-enemy = {}
-
-enemy['Baron'] = [
-    #health 0
-    300,
-    #attack damage 1
-    30,
-    #armor
-    20,
-    #magic resistance
-    15
-]
-enemy_health = enemy['Baron'][0]
-enemy_attack_damage = enemy['Baron'][1]
-enemy_armor = enemy['Baron'][2]
-enemy_magic_resistance = enemy['Baron'][3]
-
-kill_enemy_get_exp = 20
-use_skill = False
-
-def kill_enemy():
-    while enemy_health > 0:
-        if distance <= 15:
-            enemy_health -= character_current_attack_damage
-        return False
-    return True
-
-def cost_mana():
-    if_cost_mana = False
-    if kill_enemy() == True:
-        if_cost_mana = True
-        character_current_mana *= 0.8
-
-    return if_cost_mana
-
-def cost_health():
-    if_cost_health = False
-    if kill_enemy() == True:
-        if_cost_health = True
-        character_current_health -= enemy_attack_damage
-    return if_cost_health
-
-def upgrade():
-    if kill_enemy() == True:
-        character_current_exp += kill_enemy_get_exp
-    if character_current_exp == character_exp:
-        character_current_level += 1
-        return True
-    return False
-
-def if_move():
-    character_x, character_y = pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]
-    prev_character_x, prev_character_y = character_x, character_y
-
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
-        character_x -= character_current_Movement
-    if keys[pygame.K_RIGHT]:
-        character_x += character_current_Movement
-    if keys[pygame.K_UP]:
-        character_y -= character_current_Movement
-    if keys[pygame.K_DOWN]:
-        character_y += character_current_Movement
-
-    if (character_x, character_y) != (prev_character_x, prev_character_y):
-        return True
-    return False
+        if self.current_health > 0:
+            self.current_health -= physical_damage + magical_damage + self.current_true_damage
+        if self.current_health == 0:
+            return True
+    
+    # For both
+    def attack(self, target):
+        target.take_damage(self.current_magical_damage_number, self.current_physical_damage_number)
