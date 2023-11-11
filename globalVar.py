@@ -20,4 +20,6 @@ res_h = 0
 BGMVolume = 0
 SFXVolume = 0
 
+health = 10
+
 screen = None
