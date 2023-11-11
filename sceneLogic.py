@@ -244,6 +244,7 @@ def selectSubInStartSceneStateMachine():
                     animator.pointLinerAnimator(globalVar.objectPool[i],globalVar.animationPool[9])
 
             if globalVar.sceneTimer >= 420:
+                Sound.change_music('asset/bgm/GameBGM.wav')
                 globalVar.subStateMachineArray = {}
                 globalVar.objectPool = []
                 globalVar.buttons = []
