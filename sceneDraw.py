@@ -70,8 +70,7 @@ def drawArrayImageObject(frames,object,screen):
     screen.blit(image, (x*x_win/1600, y*y_win/900))
 
 def disclaimerDraw():
-    # This function now can work on window, mac should wait for fix.
-    #fixscreen()
+    fixscreen()
     drawArrayImageObject(globalVar.assetPool[1:61],globalVar.objectPool[0],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[0],globalVar.objectPool[1],globalVar.screen)
     drawBlack(globalVar.objectPool[2])
@@ -81,8 +80,7 @@ def drawitembar():
         drawOneImageObject(globalVar.itemPool[globalVar.item_bar_list[i]],[i*60,0,1,0,255,0,None,None],globalVar.screen)
 
 def startScenenDraw():
-    # This function now can work on window, mac should wait for fix.
-    #fixscreen()
+    fixscreen()
     drawOneImageObject(globalVar.assetPool[14],globalVar.objectPool[25],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[13],globalVar.objectPool[24],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[23],globalVar.screen)
@@ -153,8 +151,7 @@ def startScenenDraw():
 
 
 def ingameDraw():
-    # This function now can work on window, mac should wait for fix.
-    #fixscreen()
+    fixscreen()
     drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
@@ -169,7 +166,14 @@ def ingameDraw():
     drawHealthBar()
     drawitembar()
 
+
+import pygame
+
 def fixscreen():
     x_win, y_win = globalVar.screen.get_size()
-    if y_win !=  x_win//16*9:
-        globalVar.screen = pygame.display.set_mode((x_win, x_win//16*9), pygame.RESIZABLE)
+    if x_win % 16 != 0 or y_win % 9 != 0:
+        base = y_win // 9
+        new_width = base * 16
+        new_height = base * 9
+        globalVar.screen = pygame.display.set_mode((new_width, new_height), pygame.RESIZABLE)
+        
