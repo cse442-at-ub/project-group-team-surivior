@@ -1,69 +1,35 @@
-from item_synthesis_path import *
-from items import *
+from item_synthesis_path import item_synthesis_path
+def check_synthesis_item(ITEMS, item_bar):
+    synthesizable_items = []
+    current = ITEMS.head
+
+    while current:
+        item = current.data
+        for item_name, components in item.items():
+            required_components = list(components)
+            is_synthesizable = True
+            for component in required_components:
+                if item_bar.count(component) < required_components.count(component):
+                    is_synthesizable = False
+                    break
+            if is_synthesizable:
+                synthesizable_items.append(item_name)
+        current = current.next
+
+    return synthesizable_items
+
+
+def display_synthesizable_items(synthesizable_items):
+    if synthesizable_items:
+        #print("items:")
+        for item_name in synthesizable_items:
+            print(item_name)
+    #else:
+        #print("No items")
+        
 
 """
-Based on the original assumption of game, the game has three major levels, 
-first two major levels has six smaller levels (for better distribution and synthesis of item logic written ), 
-and the last major level has 10 smaller levels.
-
-For item bar, there are 7 grids.
-
-The beginer items (Doran series) do not occupy item grid.
-
-For current gold, the player can get different amount of golds from killing different monster.
+item_bar = ['Lost_Chapter']
+synthesizable_items = check_synthesis_item(item_synthesis_path, item_bar)
+display_synthesizable_items(synthesizable_items)
 """
-item_bar = []
-current_gold = 0
-"""
-In each major level, the first two small levels can choose two starter items, 
-then choose an epic item based on the starter items the player choose at the third small level;
-same as the following three small level. 
-At the end of the first two major levels, the player can choose legendary items based on their epic items chocies.
-      
-For the last major levels, after the first 6 small levels, the player will have 3 legendary items and them can buy supplies based on their needs
-"""
-
-start_items_check_box = []
-epic_items_check_box = []
-legendary_items_check_box = []
-
-if len(item_bar) != 0:
-    for item in item_bar:
-        if item in list(start_items.keys()):
-            start_items_check_box.append(item)
-        elif item in list(epic_items.keys()):
-            epic_items_check_box.append(item)
-        elif item in list(legendary_items.keys()):
-            legendary_items_check_box.append(item)
-
-# check if the player can get epic item or not
-epic_item_available = []
-
-if len(start_items_check_box) == 2:
-    for synthesis in epic_item_synthesis_path:
-        if set(synthesis.values()) == set(start_items_check_box):
-            epic_item_available.append(list(synthesis.keys())[0])
-
-epic_unique_item_available = []
-
-if len(start_items_check_box) == 2 and current_gold == 600:
-    items = list(start_items_check_box) + [600]  # Append 600 to the list
-    for synthesis in epic_unique_item_synthesis_path:
-        if set(synthesis.values()) == set(items):
-            epic_unique_item_available.append(list(synthesis.keys())[0])
-
-# Check if the player can get legendary item or not
-legendary_items_available = []
-
-if len(epic_items_check_box) == 2:
-    for synthesis in legendary_items_synthesis_path:
-        if set(synthesis.values()) == set(epic_items_check_box):
-            legendary_items_available.append(list(synthesis.keys())[0])
-
-legendary_unique_items_available = []
-
-if len(epic_items_check_box) == 2 and current_gold == 600:
-    items = list(start_items_check_box) + [600]
-    for synthesis in legendary_unique_items_synthesis_path:
-        if set(synthesis.values()) == set(items):
-            legendary_unique_items_available.append(list(synthesis.keys())[0])

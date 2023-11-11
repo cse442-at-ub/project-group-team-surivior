@@ -86,6 +86,10 @@ def disclaimerDraw():
     drawOneImageObject(globalVar.assetPool[0],globalVar.objectPool[1],globalVar.screen)
     drawBlack(globalVar.objectPool[2])
 
+def drawitembar():
+    for i in globalVar.item_bar_list:
+        drawOneImageObject(globalVar.itemPool[globalVar.item_bar_list[i]],[i*60,0,1,0,255,0,None,None],globalVar.screen)
+
 def startScenenDraw():
     x_win, y_win = globalVar.screen.get_size()
     if y_win !=  x_win//16*9:
@@ -173,3 +177,4 @@ def ingameDraw():
     drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen)
     drawHealthBarBackground()
     drawHealthBar()
+    drawitembar()
