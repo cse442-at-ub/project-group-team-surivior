@@ -262,7 +262,7 @@ def selectSubInStartSceneStateMachine():
                 globalVar.character_y = 0
                 globalVar.charMoving = False
                 globalVar.enemyMoving = False
-                globalVar.fps = 60
+                globalVar.fps = 180
 
 def ingameScene():
     if globalVar.inputSystem["commandState"][10] == "Pressing":  
@@ -271,6 +271,15 @@ def ingameScene():
         globalVar.character_x = globalVar.character_x/x_win*1600
         globalVar.character_y = globalVar.character_y/y_win*900
         globalVar.charMoving = True
+
+
+    if globalVar.inputSystem["commandState"][3] == "Pressing" and globalVar.health < 10: 
+        if globalVar.fps >= 180:   
+            globalVar.health += 1
+            globalVar.fps = 0
+
+    if globalVar.fps < 300:
+        globalVar.fps += 1
 
     if globalVar.charMoving:
         dx, dy = globalVar.character_x - (globalVar.objectPool[0][0]+30), globalVar.character_y - (globalVar.objectPool[0][1]+80)
