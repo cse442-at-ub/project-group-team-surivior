@@ -24,11 +24,12 @@ def display_synthesizable_items(synthesizable_items):
         #print("items:")
         for item_name in synthesizable_items:
             print(item_name)
-    else:
+    #else:
         #print("No items")
-        pass
+        
 
-
+"""
 item_bar = ['Lost_Chapter']
 synthesizable_items = check_synthesis_item(item_synthesis_path, item_bar)
 display_synthesizable_items(synthesizable_items)
+"""
