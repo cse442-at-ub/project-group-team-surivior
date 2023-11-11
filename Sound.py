@@ -1,12 +1,8 @@
 import pygame
 import globalVar
 
-volm = globalVar.BGMVolume
-vole = globalVar.SFXVolume
-
-def sound_sys_init():
-    globalVar.BGMVolume = 0.7
-    globalVar.SFXVolume = 1
+volm = 0.7
+vole = 1
 
 def sound_sys_init():
     globalVar.BGMVolume = 0.7
