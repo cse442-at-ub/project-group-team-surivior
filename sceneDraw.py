@@ -50,15 +50,6 @@ def drawOneImageObject(frame,object,screen):
     image.set_alpha(object[4])
     screen.blit(image, (x*x_win/1600, y*y_win/900))
 
-def drawHealthBar():
-    x = 50
-    y = 845
-    x_win, y_win = globalVar.screen.get_size()
-    s = pygame.Surface((1500*x_win/1600,40*y_win/900))
-    s.set_alpha(255)
-    s.fill((255,0,0))
-    globalVar.screen.blit(s,  (x*x_win/1600, y*y_win/900))
-
 def fill(surface, color):
     w, h = surface.get_size()
     r, g, b, _ = color
@@ -171,5 +162,6 @@ def ingameDraw():
     minionFrameArray = [globalVar.assetPool[10]]
     drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
     drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen)
+ 
     drawHealthBarBackground()
     drawHealthBar()
