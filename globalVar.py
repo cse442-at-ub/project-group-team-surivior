@@ -43,4 +43,6 @@ SFXVolume = 0
 score = 0
 scoreboard = None
 
+health = 10
+
 screen = None
