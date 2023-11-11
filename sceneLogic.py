@@ -272,6 +272,15 @@ def ingameScene():
         globalVar.character_y = globalVar.character_y/y_win*900
         globalVar.charMoving = True
 
+
+    if globalVar.inputSystem["commandState"][3] == "Pressing" and globalVar.health < 10: 
+        if globalVar.fps >= 120:   
+            globalVar.health += 1
+            globalVar.fps = 0
+
+    if globalVar.fps < 300:
+        globalVar.fps += 1
+
     if globalVar.charMoving:
         dx, dy = globalVar.character_x - (globalVar.objectPool[0][0]+30), globalVar.character_y - (globalVar.objectPool[0][1]+80)
         distance = math.sqrt(dx ** 2 + dy ** 2)
