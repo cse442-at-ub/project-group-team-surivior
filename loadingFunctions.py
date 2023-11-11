@@ -122,7 +122,7 @@ def startSceneAssetLoading():
     globalVar.objectPool[1] = [795,842,1,0,0,0,None,None] #lowTrig
     globalVar.objectPool[2] = [0,0,1,0,0,0,None,None] #mouse
     globalVar.objectPool[3] = [72,800,1,0,0,0,None,None] #documentText
-    globalVar.objectPool[4] = [1060,800,1,0,0,0,None,None] #exitText
+    globalVar.objectPool[4] = [1352,800,1,0,0,0,None,None] #exitText
     globalVar.objectPool[5] = [1060,800,1,0,0,0,None,None] #configText
     globalVar.objectPool[6] = [725,800,1,0,0,0,None,None] #continueText
     globalVar.objectPool[7] = [400,800,1,0,0,0,None,None] #newGameText

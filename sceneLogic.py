@@ -42,7 +42,7 @@ def startScenenLogic():
         startSceneMusicLogic()
         startSceneFIDocAndExitTextLogic()
         startSceneFIConfigAndNewgameTextLogic()
-        # startSceneFIcontinueTextLogic()
+        startSceneFIcontinueTextLogic()
         startSceneFIIntroTextLogic()
         startSceneFITitleLogic()
         startSceneFITitleShdwLogic()
@@ -53,12 +53,12 @@ def startScenenLogic():
 
     if globalVar.sceneTimer == 200:
         x_win, y_win = globalVar.screen.get_size()
-        # b_Document = button.Button("Document",(0*x_win/1600,755*y_win/900),globalVar.screen)
-        b_NewGame = button.Button("NewGame",(0*x_win/1600,755*y_win/900),globalVar.screen)
-        # b_Continue = button.Button("Continue",(640*x_win/1600,755*y_win/900),globalVar.screen)
-        # b_Config = button.Button("Config",(960*x_win/1600,755*y_win/900),globalVar.screen)
-        b_Exit = button.Button("Exit",(800*x_win/1600,755*y_win/900),globalVar.screen)
-        globalVar.buttons = [b_NewGame,b_Exit]
+        b_Document = button.Button("Document",(0*x_win/1600,755*y_win/900),globalVar.screen)
+        b_NewGame = button.Button("NewGame",(320*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Continue = button.Button("Continue",(640*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Config = button.Button("Config",(960*x_win/1600,755*y_win/900),globalVar.screen)
+        b_Exit = button.Button("Exit",(1280*x_win/1600,755*y_win/900),globalVar.screen)
+        globalVar.buttons = [b_Document, b_NewGame, b_Continue, b_Config, b_Exit]
         globalVar.subState = [None]*5
         globalVar.subState[0] = "flashIn"
         globalVar.subState[1] = 2
@@ -74,11 +74,11 @@ def startSceneFIBlackSceneLogic():
         animator.pointLinerAnimator(globalVar.objectPool[0],globalVar.animationPool[0])
 def startSceneFIDocAndExitTextLogic():
     if globalVar.sceneTimer >= 120 and globalVar.sceneTimer < 160 :
-        # animator.pointLinerAnimator(globalVar.objectPool[3],globalVar.animationPool[1])
+        animator.pointLinerAnimator(globalVar.objectPool[3],globalVar.animationPool[1])
         animator.pointLinerAnimator(globalVar.objectPool[4],globalVar.animationPool[1])
 def startSceneFIConfigAndNewgameTextLogic():
     if globalVar.sceneTimer >= 100 and globalVar.sceneTimer < 140 :
-        # animator.pointLinerAnimator(globalVar.objectPool[5],globalVar.animationPool[1])
+        animator.pointLinerAnimator(globalVar.objectPool[5],globalVar.animationPool[1])
         animator.pointLinerAnimator(globalVar.objectPool[7],globalVar.animationPool[1])
 def startSceneFIcontinueTextLogic():
     if globalVar.sceneTimer >= 80 and globalVar.sceneTimer < 120 :
@@ -117,13 +117,13 @@ def startSceneMusicLogic():
 def selectSubInStartSceneStateMachine():
     match globalVar.subState[0]:
         case "static":
-            for i in range(0,1):
+            for i in range(0,5):
                 if globalVar.buttons[i].check_collided() and globalVar.subState[1] != i: 
                     globalVar.subState[0] = "flashOut"
                     globalVar.subState[1] = i
                     globalVar.objectPool[1][4] = 255
                     globalVar.objectPool[1][6][4] = 0
-            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
+            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[1].check_collided():
                 globalVar.subState[0] = "clickedFlashIn"
                 globalVar.objectPool[1][4] = 1
                 globalVar.objectPool[1][0] = globalVar.ssv[0][globalVar.subState[1]]
@@ -132,7 +132,7 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 globalVar.sceneTimer = 299
-            if globalVar.buttons[1].check_clicked(): #b_Exit
+            if globalVar.buttons[4].check_clicked(): #b_Exit
                 pygame.quit()
         case "flashOut":
             animator.pointLinerAnimator(globalVar.objectPool[1],globalVar.animationPool[19])
@@ -141,10 +141,10 @@ def selectSubInStartSceneStateMachine():
                 globalVar.objectPool[1][4] = 0
                 globalVar.objectPool[1][0] = globalVar.ssv[0][globalVar.subState[1]]
                 globalVar.objectPool[1][6][4] = 0
-            for i in range(0,1):
+            for i in range(0,5):
                 if globalVar.buttons[i].check_collided() and globalVar.subState[1] != i: 
                     globalVar.subState[1] = i
-            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
+            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[1].check_collided():
                 globalVar.subState[0] = "clickedFlashIn"
                 globalVar.objectPool[1][4] = 1
                 globalVar.objectPool[1][0] = globalVar.ssv[0][globalVar.subState[1]]
@@ -153,20 +153,20 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 globalVar.sceneTimer = 299
-            if globalVar.buttons[1].check_clicked(): #b_Exit
+            if globalVar.buttons[4].check_clicked(): #b_Exit
                 pygame.quit()
         case "flashIn":
             animator.pointLinerAnimator(globalVar.objectPool[1],globalVar.animationPool[18])
             if globalVar.objectPool[1][6][4] >= globalVar.animationPool[18]["length"]:
                 globalVar.subState[0] == "static"
                 globalVar.objectPool[1][4] = 255
-            for i in range(0,1):
+            for i in range(0,5):
                 if globalVar.buttons[i].check_collided() and globalVar.subState[1] != i: 
                     globalVar.subState[0] = "flashOut"
                     globalVar.subState[1] = i
                     globalVar.objectPool[1][4] = 255
                     globalVar.objectPool[1][6][4] = 0
-            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
+            if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[1].check_collided():
                 globalVar.subState[0] = "clickedFlashIn"
                 globalVar.objectPool[1][4] = 1
                 globalVar.objectPool[1][0] = globalVar.ssv[0][globalVar.subState[1]]
@@ -175,7 +175,7 @@ def selectSubInStartSceneStateMachine():
                     globalVar.objectPool[i][6] = [0,0,0,0,0,0]
                     globalVar.objectPool[i][7] = [0,0,0,0,0,0]
                 globalVar.sceneTimer = 299
-            if globalVar.buttons[1].check_clicked(): #b_Exit
+            if globalVar.buttons[4].check_clicked(): #b_Exit
                 pygame.quit()
         case "clickedFlashIn":
             if globalVar.sceneTimer < 315:

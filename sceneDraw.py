@@ -106,12 +106,12 @@ def startScenenDraw():
     drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[9],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[4],globalVar.objectPool[8],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[7],globalVar.objectPool[7],globalVar.screen)
-    # drawOneImageObject(globalVar.assetPool[1],globalVar.objectPool[6],globalVar.screen)
-    # drawOneImageObject(globalVar.assetPool[0],globalVar.objectPool[5],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[1],globalVar.objectPool[6],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[0],globalVar.objectPool[5],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[3],globalVar.objectPool[4],globalVar.screen)
-    # drawOneImageObject(globalVar.assetPool[2],globalVar.objectPool[3],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[2],globalVar.objectPool[3],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[6],globalVar.objectPool[2],globalVar.screen)
-    # drawOneImageObject(globalVar.assetPool[5],globalVar.objectPool[1],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[5],globalVar.objectPool[1],globalVar.screen)
     
     charFrameArray = []
     for i  in range(0,9):
@@ -153,6 +153,7 @@ def startScenenDraw():
 
     drawBlack(globalVar.objectPool[0])
 
+
 def ingameDraw():
     x_win, y_win = globalVar.screen.get_size()
     if y_win !=  x_win//16*9:
@@ -170,3 +171,8 @@ def ingameDraw():
     drawHealthBarBackground()
     drawHealthBar()
     drawitembar()
+
+def fixscreen():
+    x_win, y_win = globalVar.screen.get_size()
+    if y_win !=  x_win//16*9:
+        globalVar.screen = pygame.display.set_mode((x_win, x_win//16*9), pygame.RESIZABLE)
