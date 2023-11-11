@@ -25,9 +25,10 @@ def drawBlackBlock(object,w,h):
 def drawOneImageObject(frame,object,screen):
     x = object[0]
     y = object[1]
+    size = object[2]
     x_win, y_win = screen.get_size()
     x_img, y_img = frame.get_size()
-    image = pygame.transform.scale(frame, (x_img*x_win/1600,y_img*y_win/900))
+    image = pygame.transform.scale(frame, (x_img*x_win/1600*size,y_img*y_win/900*size))
     image.set_alpha(object[4])
     screen.blit(image, (x*x_win/1600, y*y_win/900))
 
@@ -51,11 +52,21 @@ def drawArrayImageObject(frames,object,screen):
     screen.blit(image, (x*x_win/1600, y*y_win/900))
 
 def disclaimerDraw():
+    x_win, y_win = globalVar.screen.get_size()
+    if y_win !=  x_win//16*9:
+        globalVar.screen = pygame.display.set_mode((x_win, x_win//16*9), pygame.RESIZABLE) 
     drawArrayImageObject(globalVar.assetPool[1:61],globalVar.objectPool[0],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[0],globalVar.objectPool[1],globalVar.screen)
     drawBlack(globalVar.objectPool[2])
 
+def drawitembar():
+    for i in globalVar.item_bar_list:
+        drawOneImageObject(globalVar.itemPool[globalVar.item_bar_list[i]],[i*60,0,1,0,255,0,None,None],globalVar.screen)
+
 def startScenenDraw():
+    x_win, y_win = globalVar.screen.get_size()
+    if y_win !=  x_win//16*9:
+        globalVar.screen = pygame.display.set_mode((x_win, x_win//16*9), pygame.RESIZABLE) 
     drawOneImageObject(globalVar.assetPool[14],globalVar.objectPool[25],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[13],globalVar.objectPool[24],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[23],globalVar.screen)
@@ -77,12 +88,12 @@ def startScenenDraw():
     drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[9],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[4],globalVar.objectPool[8],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[7],globalVar.objectPool[7],globalVar.screen)
-    drawOneImageObject(globalVar.assetPool[1],globalVar.objectPool[6],globalVar.screen)
-    drawOneImageObject(globalVar.assetPool[0],globalVar.objectPool[5],globalVar.screen)
+    # drawOneImageObject(globalVar.assetPool[1],globalVar.objectPool[6],globalVar.screen)
+    # drawOneImageObject(globalVar.assetPool[0],globalVar.objectPool[5],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[3],globalVar.objectPool[4],globalVar.screen)
-    drawOneImageObject(globalVar.assetPool[2],globalVar.objectPool[3],globalVar.screen)
+    # drawOneImageObject(globalVar.assetPool[2],globalVar.objectPool[3],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[6],globalVar.objectPool[2],globalVar.screen)
-    drawOneImageObject(globalVar.assetPool[5],globalVar.objectPool[1],globalVar.screen)
+    # drawOneImageObject(globalVar.assetPool[5],globalVar.objectPool[1],globalVar.screen)
     
     charFrameArray = []
     for i  in range(0,9):
@@ -123,3 +134,15 @@ def startScenenDraw():
     drawArrayImageObject(charFrameArray,globalVar.objectPool[27],globalVar.screen)
 
     drawBlack(globalVar.objectPool[0])
+
+def ingameDraw():
+    drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
+    charFrameArray = []
+    for i  in range(0,9):
+        charFrameArray.append(globalVar.assetPool[i])
+    minionFrameArray = [globalVar.assetPool[10]]
+    drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
+    drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen)
+    drawitembar()
