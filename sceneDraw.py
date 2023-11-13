@@ -1,4 +1,4 @@
-import pygame,globalVar
+import pygame,globalVar,score
 
 def drawBlack(object):
     x_win, y_win = globalVar.screen.get_size()
@@ -22,12 +22,31 @@ def drawBlackBlock(object,w,h):
     s.fill((0,0,0))
     globalVar.screen.blit(s,  (x*x_win/1600, y*y_win/900))
 
+def drawHealthBarBackground():
+    x = 50
+    y = 845
+    x_win, y_win = globalVar.screen.get_size()
+    s = pygame.Surface((1500*x_win/1600,40*y_win/900))
+    s.set_alpha(255)
+    s.fill((255,0,0))
+    globalVar.screen.blit(s,  (x*x_win/1600, y*y_win/900))
+
+def drawHealthBar():
+    x = 50
+    y = 845
+    x_win, y_win = globalVar.screen.get_size()
+    s = pygame.Surface((1500*globalVar.health*0.1*x_win/1600,40*y_win/900))
+    s.set_alpha(255)
+    s.fill((255,255,20))
+    globalVar.screen.blit(s,  (x*x_win/1600, y*y_win/900))
+
 def drawOneImageObject(frame,object,screen):
     x = object[0]
     y = object[1]
+    size = object[2]
     x_win, y_win = screen.get_size()
     x_img, y_img = frame.get_size()
-    image = pygame.transform.scale(frame, (x_img*x_win/1600,y_img*y_win/900))
+    image = pygame.transform.scale(frame, (x_img*x_win/1600*size,y_img*y_win/900*size))
     image.set_alpha(object[4])
     screen.blit(image, (x*x_win/1600, y*y_win/900))
 
@@ -51,11 +70,17 @@ def drawArrayImageObject(frames,object,screen):
     screen.blit(image, (x*x_win/1600, y*y_win/900))
 
 def disclaimerDraw():
+    fixscreen()
     drawArrayImageObject(globalVar.assetPool[1:61],globalVar.objectPool[0],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[0],globalVar.objectPool[1],globalVar.screen)
     drawBlack(globalVar.objectPool[2])
 
+def drawitembar():
+    for i in globalVar.item_bar_list:
+        drawOneImageObject(globalVar.itemPool[globalVar.item_bar_list[i]],[i*60,0,1,0,255,0,None,None],globalVar.screen)
+
 def startScenenDraw():
+    fixscreen()
     drawOneImageObject(globalVar.assetPool[14],globalVar.objectPool[25],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[13],globalVar.objectPool[24],globalVar.screen)
     drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[23],globalVar.screen)
@@ -123,3 +148,32 @@ def startScenenDraw():
     drawArrayImageObject(charFrameArray,globalVar.objectPool[27],globalVar.screen)
 
     drawBlack(globalVar.objectPool[0])
+
+
+def ingameDraw():
+    fixscreen()
+    drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
+    charFrameArray = []
+    for i  in range(0,9):
+        charFrameArray.append(globalVar.assetPool[i])
+    minionFrameArray = [globalVar.assetPool[10]]
+    drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
+    drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen)
+ 
+    drawHealthBarBackground()
+    drawHealthBar()
+    drawitembar()
+
+
+import pygame
+
+def fixscreen():
+    x_win, y_win = globalVar.screen.get_size()
+    if x_win % 16 != 0 or y_win % 9 != 0:
+        base = y_win // 9
+        new_width = base * 16
+        new_height = base * 9
+        globalVar.screen = pygame.display.set_mode((new_width, new_height), pygame.RESIZABLE)
+        

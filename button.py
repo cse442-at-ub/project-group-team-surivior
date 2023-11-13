@@ -4,7 +4,7 @@ class Button:
     def __init__(self, txt, pos, screen):
         self.text = txt
         self.pos = pos
-        self.button = pygame.rect.Rect((self.pos[0], self.pos[1]), (320, 150))
+        self.button = pygame.rect.Rect((self.pos[0], self.pos[1]), (1600/5, 150))
         self.screen = screen
 
     def draw(self):

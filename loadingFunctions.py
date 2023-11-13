@@ -165,7 +165,7 @@ def startSceneAssetLoading():
     globalVar.objectPool[43] = [-17,530,1,0,0,0,None,None] #horiBlock
     globalVar.objectPool[44] = [125,180,1,0,0,0,None,None] #vertBlock
 
-    globalVar.objectPool[45] = [0,-695,1,0,0,0,None,None] #map
+    globalVar.objectPool[45] = [-1280,-695,2.6,0,0,0,None,None] #map
 
     globalVar.objectPool[46] = [750,653,1,0,0,0,None,None] #charShdw
     globalVar.objectPool[47] = [132,408,1,0,0,0,None,None] #lock1
@@ -486,6 +486,41 @@ def startSceneAssetLoading():
     globalVar.animationPool[26] = charCover15FlashInAnim2
     globalVar.animationPool[27] = charCover24FlashInAnim2
     globalVar.animationPool[28] = charCover3FlashInAnim2
+
+def ingameAssetLoad():
+    imagePathArray = []
+    for i in range(0,9):
+        imagePathArray.append('asset/startScene/CharFrame/ys/'+str(i)+'.png')
+
+    imagePathArray.append('asset/startScene/map.png') #9
+    imagePathArray.append('asset/startScene/minion.png') #10
+    imagePathArray.append('asset/startScene/charShdw.png') #11
+
+    globalVar.assetPool = [None]*20
+    for i in range(0,len(imagePathArray)):
+        globalVar.assetPool[i] = pygame.image.load(imagePathArray[i])
+        globalVar.assetPool[i] = pygame.Surface.convert_alpha(globalVar.assetPool[i]) 
+    globalVar.objectPool = [None]*5
+
+    globalVar.objectPool[0] = [770,430,1,15,255,0,None,None] #char
+    globalVar.objectPool[1] = [750,483,1,15,255,0,None,None] #char shdw
+    globalVar.objectPool[2] = [1394,236,1,0,255,0,None,None] #minion
+    globalVar.objectPool[3] = [1411,296,1,0,255,0,None,None] #minion shdw
+    globalVar.objectPool[4] = [-1280,-540,2.6,0,255,0,None,None] #map
+
+    for i in range(0,5):
+        globalVar.objectPool[i][6] = [0,0,0,0,0,0]
+        globalVar.objectPool[i][7] = [0,0,0,0,0,0]
+        
+    # textFlashInAnim = {}
+    # textFlashInAnim[0] = [0,13]
+    # textFlashInAnim[13] = [255*0.85,30]
+    # textFlashInAnim[30] = [255,0]
+    # textFlashInAnim["prpty"] = 4
+    # textFlashInAnim["length"] = 30
+    # textFlashInAnim["loopType"] = "const"
+
+    globalVar.animationPool = []
 
 def testFirstLoadingSceneAssetLoad():
     # Check if all image loading threads are done
