@@ -264,6 +264,8 @@ def selectSubInStartSceneStateMachine():
                 globalVar.charMoving = False
                 globalVar.enemyMoving = False
                 globalVar.fps = 180
+                globalVar.enemyHealth = 10 # enemy's health
+                globalVar.kill_timer = 0 # timer for character
 
 def ingameScene():
     globalVar.scoreboard = score.ScoreBoard()
@@ -329,3 +331,10 @@ def ingameScene():
         globalVar.attack_timer = max(0, globalVar.attack_timer - 1)  # Decrease the attack timer
         # globalVar.color_change_timer = max(0, globalVar.color_change_timer - 1)  # Decrease the color change timer
         # globalVar.color_change_timer_heal = max(0, globalVar.color_change_timer_heal - 1)  # Decrease the color change timer
+        
+        if globalVar.inputSystem["commandState"][0] == "Pressing" and globalVar.enemyHealth > 0 and distance <= 20 and globalVar.kill_timer <= 0:
+            globalVar.enemyHealth -= 1 # reduce enemy health
+            globalVar.kill_timer = 60 # Set the attack timer to 1 second (FPS frames)
+            globalVar.score += 1 # increase score
+        
+        globalVar.kill_timer = max(0, globalVar.kill_timer - 1)  # Decrease the kill timer
