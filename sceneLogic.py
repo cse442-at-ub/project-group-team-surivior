@@ -309,7 +309,7 @@ def ingameScene():
     
     if globalVar.enemyMoving:
         if globalVar.enemyHealth > 0 and globalVar.enemyHealth < 5:
-            if globalVar.fps >= 360:   
+            if globalVar.fps >= 240:   
                 globalVar.enemyHealth += 1
                 globalVar.fps = 0
                 
