@@ -149,6 +149,17 @@ def startScenenDraw():
 
     drawBlack(globalVar.objectPool[0])
 
+def drawText(number):
+    x = 780
+    y = 850
+    # size = object[2]
+    my_font = pygame.font.SysFont('Roboto', 30)
+    text_surface = my_font.render('Health Cooldown ' + str(number), False, (0, 0, 0))
+    x_win, y_win = globalVar.screen.get_size()
+    x_img, y_img = text_surface.get_size()
+    image = pygame.transform.scale(text_surface, (x_img*x_win/1600,y_img*y_win/900))
+    # image.set_alpha(object[4])
+    globalVar.screen.blit(image, (x*x_win/1600, y*y_win/900))
 
 def ingameDraw():
     fixscreen()
@@ -165,6 +176,18 @@ def ingameDraw():
     drawHealthBarBackground()
     drawHealthBar()
     drawitembar()
+    
+    
+    if globalVar.fps <= 60:
+        drawText(3)
+        pass
+    elif globalVar.fps <=120:
+        drawText(2)
+    elif globalVar.fps <=180:
+        drawText(1)
+    else:
+        globalVar.fps ==0
+    
 
 def enemyDead():
     fixscreen()
