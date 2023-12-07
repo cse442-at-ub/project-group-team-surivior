@@ -109,7 +109,7 @@ def startSceneAssetLoading():
     imagePathArray.append('asset/startScene/DRISText.png') #48
     imagePathArray.append('asset/startScene/map.png') #49
 
-    globalVar.assetPool = [None]*50
+    globalVar.assetPool = [None]*55
     # pygame.mixer.music.load('asset/disclaimerScene/disclaimer.wav')
     # pygame.mixer.music.play(1)
     for i in range(0,len(imagePathArray)):
@@ -495,20 +495,22 @@ def ingameAssetLoad():
     imagePathArray.append('asset/startScene/map.png') #9
     imagePathArray.append('asset/startScene/minion.png') #10
     imagePathArray.append('asset/startScene/charShdw.png') #11
+    imagePathArray.append('asset/startScene/gameOver.png') #12
 
     globalVar.assetPool = [None]*20
     for i in range(0,len(imagePathArray)):
         globalVar.assetPool[i] = pygame.image.load(imagePathArray[i])
         globalVar.assetPool[i] = pygame.Surface.convert_alpha(globalVar.assetPool[i]) 
-    globalVar.objectPool = [None]*5
+    globalVar.objectPool = [None]*6
 
     globalVar.objectPool[0] = [770,430,1,15,255,0,None,None] #char
     globalVar.objectPool[1] = [750,483,1,15,255,0,None,None] #char shdw
     globalVar.objectPool[2] = [1394,236,1,0,255,0,None,None] #minion
     globalVar.objectPool[3] = [1411,296,1,0,255,0,None,None] #minion shdw
     globalVar.objectPool[4] = [-1280,-540,2.6,0,255,0,None,None] #map
+    globalVar.objectPool[5] = [0,0,1,0,0,0,None,None] #gameOver
 
-    for i in range(0,5):
+    for i in range(0,6):
         globalVar.objectPool[i][6] = [0,0,0,0,0,0]
         globalVar.objectPool[i][7] = [0,0,0,0,0,0]
         

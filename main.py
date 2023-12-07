@@ -48,11 +48,9 @@ while 1:
     globalVar.currentUpdateBlock()
     globalVar.currentDrawBlock()
 
-    inputDebuger = {}
-    for i in range(0,13):
-        inputDebuger[i] = my_font.render(globalVar.inputSystem["commandState"][i], False, (255, 255, 255))
-        globalVar.screen.blit(inputDebuger[i], (0,i*15))
-    if globalVar.scoreboard != None:
-        globalVar.scoreboard.showScore()
+    # inputDebuger = {}
+    # for i in range(0,13):
+    #     inputDebuger[i] = my_font.render(globalVar.inputSystem["commandState"][i], False, (255, 255, 255))
+    #     globalVar.screen.blit(inputDebuger[i], (0,i*15))
     pygame.display.update()
     clock.tick(60)

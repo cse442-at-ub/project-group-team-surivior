@@ -166,6 +166,10 @@ def ingameDraw():
     drawHealthBar()
     drawitembar()
 
+    drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
+
+    if globalVar.scoreboard != None:
+        globalVar.scoreboard.showScore()
 
 import pygame
 
