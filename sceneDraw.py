@@ -189,6 +189,10 @@ def ingameDraw():
         globalVar.fps ==0
     
 
+    drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
+
+    if globalVar.scoreboard != None:
+        globalVar.scoreboard.showScore()
 
 import pygame
 
