@@ -334,6 +334,7 @@ def ingameScene():
         x_win, y_win = globalVar.screen.get_size()
         globalVar.currentUpdateBlock = endScene
         globalVar.currentDrawBlock = sceneDraw.ingameDraw
+        Sound.change_music("asset/bgm/Gameover.wav")
         globalVar.objectPool[5][4] = 255
         b_toStart = button.Button("start",(633*x_win/1600,510*y_win/900),globalVar.screen)
         globalVar.buttons = [b_toStart]
