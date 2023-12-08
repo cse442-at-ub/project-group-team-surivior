@@ -329,3 +329,18 @@ def ingameScene():
         globalVar.attack_timer = max(0, globalVar.attack_timer - 1)  # Decrease the attack timer
         # globalVar.color_change_timer = max(0, globalVar.color_change_timer - 1)  # Decrease the color change timer
         # globalVar.color_change_timer_heal = max(0, globalVar.color_change_timer_heal - 1)  # Decrease the color change timer
+
+    if globalVar.health == 0:
+        x_win, y_win = globalVar.screen.get_size()
+        globalVar.currentUpdateBlock = endScene
+        globalVar.currentDrawBlock = sceneDraw.ingameDraw
+        globalVar.objectPool[5][4] = 255
+        b_toStart = button.Button("start",(633*x_win/1600,510*y_win/900),globalVar.screen)
+        globalVar.buttons = [b_toStart]
+
+def endScene():
+    if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
+        globalVar.objectPool[5][3] = 0
+        globalVar.currentUpdateBlock = startScenenLogic 
+        globalVar.currentDrawBlock = sceneDraw.drawBlack4Start
+        globalVar.sceneTimer = -1
