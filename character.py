@@ -15,7 +15,6 @@ class Role:
         self.current_magic_resistance = current_magic_resistance
         self.rune_keystone = rune_keystone
 
-
     # works
     def apply_item_to_role(self, role, item_names):
         current = ITEMS.head
