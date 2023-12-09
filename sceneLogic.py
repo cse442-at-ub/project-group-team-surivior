@@ -307,10 +307,6 @@ def ingameScene():
         globalVar.enemyMoving = True
     
     if globalVar.enemyMoving:
-        if globalVar.enemyHealth > 0 and globalVar.enemyHealth < 5:
-            if globalVar.fps >= 240:   
-                globalVar.enemyHealth += 1
-                globalVar.fps = 0
                 
         if distance > 0:
             dx /= distance
@@ -329,12 +325,9 @@ def ingameScene():
         if globalVar.health > 0 and distance <= 15 and globalVar.attack_timer <= 0 and globalVar.enemyHealth > 0:  
             globalVar.health -= globalVar.damage  # Reduce character's health
             globalVar.attack_timer = 60  # Set the attack timer to 1 second (FPS frames)
-            # globalVar.color_change_timer = int(0.1 * 60)  # Set color change timer to 0.1 seconds
 
         globalVar.attack_timer = max(0, globalVar.attack_timer - 1)  # Decrease the attack timer
-        # globalVar.color_change_timer = max(0, globalVar.color_change_timer - 1)  # Decrease the color change timer
-        # globalVar.color_change_timer_heal = max(0, globalVar.color_change_timer_heal - 1)  # Decrease the color change timer
-        
+
         if globalVar.inputSystem["commandState"][0] == "Pressing" and globalVar.enemyHealth > 0 and distance <= 20 and globalVar.kill_timer <= 0: # press Q to kill
             globalVar.enemyHealth -= 1 # reduce enemy health
             globalVar.score += 1 # increase score
