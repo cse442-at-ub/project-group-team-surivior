@@ -177,7 +177,6 @@ def ingameDraw():
     drawHealthBar()
     drawitembar()
     
-    
     if globalVar.fps <= 60:
         drawText(3)
         pass
@@ -192,20 +191,6 @@ def ingameDraw():
 
     if globalVar.scoreboard != None:
         globalVar.scoreboard.showScore()
-
-def enemyDead():
-    fixscreen()
-    drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
-    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
-    charFrameArray = []
-    for i  in range(0,9):
-        charFrameArray.append(globalVar.assetPool[i])
-    
-    drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
- 
-    drawHealthBarBackground()
-    drawHealthBar()
-    drawitembar()
 
 import pygame
 
