@@ -5,6 +5,15 @@ def load_image(image_path):
     for i in range(0,len(image_path)):
         globalVar.assetPool[i] = pygame.image.load(image_path[i])
 
+def load_item():
+    imagePathArray = []
+    globalVar.itemPool = [None] * 25
+    for i in range(0,25):
+        imagePathArray.append('asset/items/img'+str(i)+'.png')
+    for i in range(0,25):
+        globalVar.itemPool[i] = pygame.image.load(imagePathArray[i])
+        globalVar.itemPool[i] = pygame.Surface.convert_alpha(globalVar.itemPool[i]) 
+
 def firstLoadingSceneAssetLoad():
     imagePathArray = []
     imagePathArray.append('asset/disclaimerScene/loadTextFile.png')

@@ -252,6 +252,7 @@ def selectSubInStartSceneStateMachine():
                 globalVar.assetPool = []
                 globalVar.sceneTimer = 0
                 loadingFunctions.ingameAssetLoad()
+                loadingFunctions.load_item()
                 globalVar.health = 10  # Character's initial health
                 globalVar.damage = 1  # Initial damage dealt by the enemy
                 globalVar.attack_timer = 0  # Timer for enemy attack

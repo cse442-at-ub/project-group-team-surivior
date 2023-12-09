@@ -76,8 +76,9 @@ def disclaimerDraw():
     drawBlack(globalVar.objectPool[2])
 
 def drawitembar():
-    for i in globalVar.item_bar_list:
-        drawOneImageObject(globalVar.itemPool[globalVar.item_bar_list[i]],[i*60,0,1,0,255,0,None,None],globalVar.screen)
+    item_bar_list = [0,1,2,3,4,5,6,7,8,9,10]
+    for i in item_bar_list:
+        drawOneImageObject(globalVar.itemPool[item_bar_list[i]],[i*60,0,1,0,255,0,None,None],globalVar.screen)
 
 def startScenenDraw():
     fixscreen()
