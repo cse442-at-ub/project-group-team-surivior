@@ -30,12 +30,17 @@ def game():
     color_change_timer = 0  # Timer for character color change
     color_change_timer_heal = 0
 
+    keystone_activate = False
+
     clock = pygame.time.Clock() 
 
     running = True
     Sound.change_music('asset/bgm/GameBGM.wav')
     while running:
         for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
+                keystone_activate = not keystone_activate
+
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:

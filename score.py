@@ -1,6 +1,6 @@
 import pygame, globalVar
 
-class ScoreBoard():
+class ScoreBoard:
     def __init__(self):
         self.score = globalVar.score
         self.text_color = (255, 255, 255)

@@ -1,5 +1,4 @@
 import threading,os,pygame
-from item_synthesis import check_synthesis_item, display_synthesizable_items
 
 pygame.init()
 
@@ -22,6 +21,7 @@ BGMVolume = 0
 SFXVolume = 0
 score = 0
 scoreboard = None
+keystone_activation = None
 
 ITEM_BAR_HEIGHT = 100
 ITEM_WIDTH = 80  # Width of each item including margin
@@ -34,7 +34,7 @@ WHITE = (255, 255, 255)
 pygame.display.set_mode((1, 1))
 # Load your item images
 imagePathArray = []
-for i in range(0,25):
+for i in range(0,9):
     imagePathArray.append('asset/items/img'+str(i)+'.png')
     
 itemPool = [None] * len(imagePathArray)
@@ -46,12 +46,7 @@ for i in range(0,len(imagePathArray)):
 imagePathArray = None
 
 # Initial empty list of items in the item bar
-item_bar_list = [0,1,2,3,4,5,6,7,8,9,10]
+item_bar_list = [0,1,2,3,4,5,6,7,8]
 
 pygame.display.quit()
 screen = None
-
-if 'Lethal_Tempo' in globals() and 'Conqueror' in globals() and 'Dark_Harvest' in globals() and 'Grasp_of_the_Undying' in globals():
-    print("Rune Keystone classes are available in goldVar.py")
-else:
-    print("Rune Keystone classes are not available in goldVar.py")
