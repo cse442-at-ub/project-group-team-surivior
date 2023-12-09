@@ -28,19 +28,19 @@ ITEMS.append('Mercurys_Treads', Mercurys_Treads)
 
 ###########################################################Legendary items#############################################################################################
 B_F_Sword = {'current_damage_number': 55}
-Hearthbound_Axe = {'current_damage_number': 30, 'current_moving_speed': 0.07}
+Hearthbound_Axe = {'current_damage_number': 30, 'current_moving_speed': 10}
 Aegis_of_the_Legion = {'current_magic_resistance': 60, 'current_armor': 60}
 Randuin_Omen = {'max_health': 300, 'current_armor': 60}
 Abyssal_Mask = {'max_health': 300, 'current_magic_resistance': 60}
-Winter_Approach = {'current_armor': 40, 'max_health': 350, 'current_moving_speed': 0.05}
-Force_of_Nature = {'current_magic_resistance': 40, 'max_health': 350, 'current_moving_speed': 0.05}
+Winter_Approach = {'current_armor': 40, 'max_health': 350, 'current_moving_speed': 5}
+Force_of_Nature = {'current_magic_resistance': 40, 'max_health': 350, 'current_moving_speed': 5}
 Warmog_Armor = {'max_health': 1000}
 
-ITEMS.append('Runaans_Hurricane', B_F_Sword)
-ITEMS.append('Runaans_Hurricane', Hearthbound_Axe)
-ITEMS.append('Runaans_Hurricane', Aegis_of_the_Legion)
-ITEMS.append('Force_of_Nature', Randuin_Omen)
-ITEMS.append('Force_of_Nature', Abyssal_Mask)
-ITEMS.append('Force_of_Nature', Winter_Approach)
+ITEMS.append('B_F_Sword', B_F_Sword)
+ITEMS.append('Hearthbound_Axe', Hearthbound_Axe)
+ITEMS.append('Aegis_of_the_Legion', Aegis_of_the_Legion)
+ITEMS.append('Randuin_Omen', Randuin_Omen)
+ITEMS.append('Abyssal_Mask', Abyssal_Mask)
+ITEMS.append('Winter_Approach', Winter_Approach)
 ITEMS.append('Force_of_Nature', Force_of_Nature)
-ITEMS.append('Steraks_Gage', Warmog_Armor)
+ITEMS.append('Warmog_Armor', Warmog_Armor)
