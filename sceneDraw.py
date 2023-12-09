@@ -190,7 +190,11 @@ def ingameDraw():
     drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
 
     if globalVar.scoreboard != None:
-        globalVar.scoreboard.showScore()
+        globalVar.scoreboard = score.ScoreBoard()
+        if globalVar.currentUpdateBlock == sceneLogic.endScene:
+            globalVar.scoreboard.showScore(790,750)
+        else:
+            globalVar.scoreboard.showScore(1500,20)
 
 import pygame
 
