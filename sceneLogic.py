@@ -338,16 +338,22 @@ def ingameScene():
         
         if globalVar.inputSystem["commandState"][0] == "Pressing" and globalVar.enemyHealth > 0 and distance <= 20 and globalVar.kill_timer <= 0: # press Q to kill
             globalVar.enemyHealth -= 1 # reduce enemy health
-            globalVar.kill_timer = 30 # Set the attack timer to 0.5 second (FPS frames)
             globalVar.score += 1 # increase score
+            globalVar.kill_timer = 30 # Set the attack timer to 0.5 second (FPS frames)
         
         globalVar.kill_timer = max(0, globalVar.kill_timer - 1)  # Decrease the kill timer
         
-        if globalVar.enemyHealth <= 0:
-            globalVar.currentDrawBlock = sceneDraw.enemyDead
-            globalVar.enemyMoving = False
+    if globalVar.enemyHealth <= 0:
+        globalVar.enemyMoving = False
+        x_win, y_win = globalVar.screen.get_size()
+        globalVar.currentUpdateBlock = endScene
+        globalVar.currentDrawBlock = sceneDraw.ingameDraw
+        Sound.change_music("asset/bgm/VictoryBGM.wav")
+        globalVar.objectPool[5][4] = 255
+        b_toStart = button.Button("start",(633*x_win/1600,510*y_win/900),globalVar.screen)
+        globalVar.buttons = [b_toStart]
 
-    if globalVar.health == 0:
+    if globalVar.health <= 0:
         x_win, y_win = globalVar.screen.get_size()
         globalVar.currentUpdateBlock = endScene
         globalVar.currentDrawBlock = sceneDraw.ingameDraw
@@ -358,6 +364,7 @@ def ingameScene():
 
 def endScene():
     if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
+        globalVar.score == 0
         globalVar.objectPool[5][3] = 0
         globalVar.currentUpdateBlock = startScenenLogic 
         globalVar.currentDrawBlock = sceneDraw.drawBlack4Start
