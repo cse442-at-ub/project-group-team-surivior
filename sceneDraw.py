@@ -1,4 +1,4 @@
-import pygame,globalVar,score
+import pygame,globalVar,score,sceneLogic
 
 def drawBlack(object):
     x_win, y_win = globalVar.screen.get_size()
