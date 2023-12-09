@@ -264,6 +264,8 @@ def selectSubInStartSceneStateMachine():
                 globalVar.charMoving = False
                 globalVar.enemyMoving = False
                 globalVar.fps = 180
+                globalVar.enemyHealth = 5 # enemy's health
+                globalVar.kill_timer = 0 # timer for character
 
 def ingameScene():
     globalVar.scoreboard = score.ScoreBoard()
@@ -276,7 +278,7 @@ def ingameScene():
         globalVar.charMoving = True
 
 
-    if globalVar.inputSystem["commandState"][3] == "Pressing" and globalVar.health < 10: 
+    if globalVar.inputSystem["commandState"][3] == "Pressing" and globalVar.health < 10: # press R to heal
         if globalVar.fps >= 180:   
             globalVar.health += 1
             globalVar.fps = 0
@@ -304,8 +306,13 @@ def ingameScene():
     distance = math.sqrt(dx ** 2 + dy ** 2)
     if abs(dx) > 3 and abs(dy) > 3:
         globalVar.enemyMoving = True
+    
     if globalVar.enemyMoving:
-
+        if globalVar.enemyHealth > 0 and globalVar.enemyHealth < 5:
+            if globalVar.fps >= 240:   
+                globalVar.enemyHealth += 1
+                globalVar.fps = 0
+                
         if distance > 0:
             dx /= distance
             dy /= distance
@@ -320,8 +327,7 @@ def ingameScene():
         if abs(dx) > 3 and abs(dy) > 3:
             globalVar.enemyMoving = True
         
-
-        if globalVar.health > 0 and distance <= 15 and globalVar.attack_timer <= 0:  
+        if globalVar.health > 0 and distance <= 15 and globalVar.attack_timer <= 0 and globalVar.enemyHealth > 0:  
             globalVar.health -= globalVar.damage  # Reduce character's health
             globalVar.attack_timer = 60  # Set the attack timer to 1 second (FPS frames)
             # globalVar.color_change_timer = int(0.1 * 60)  # Set color change timer to 0.1 seconds
@@ -329,6 +335,17 @@ def ingameScene():
         globalVar.attack_timer = max(0, globalVar.attack_timer - 1)  # Decrease the attack timer
         # globalVar.color_change_timer = max(0, globalVar.color_change_timer - 1)  # Decrease the color change timer
         # globalVar.color_change_timer_heal = max(0, globalVar.color_change_timer_heal - 1)  # Decrease the color change timer
+        
+        if globalVar.inputSystem["commandState"][0] == "Pressing" and globalVar.enemyHealth > 0 and distance <= 20 and globalVar.kill_timer <= 0: # press Q to kill
+            globalVar.enemyHealth -= 1 # reduce enemy health
+            globalVar.kill_timer = 30 # Set the attack timer to 0.5 second (FPS frames)
+            globalVar.score += 1 # increase score
+        
+        globalVar.kill_timer = max(0, globalVar.kill_timer - 1)  # Decrease the kill timer
+        
+        if globalVar.enemyHealth <= 0:
+            globalVar.currentDrawBlock = sceneDraw.enemyDead
+            globalVar.enemyMoving = False
 
     if globalVar.health == 0:
         x_win, y_win = globalVar.screen.get_size()

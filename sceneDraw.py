@@ -164,14 +164,14 @@ def drawText(number):
 def ingameDraw():
     fixscreen()
     drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
-    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen) #minion shadow
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
     charFrameArray = []
     for i  in range(0,9):
         charFrameArray.append(globalVar.assetPool[i])
     minionFrameArray = [globalVar.assetPool[10]]
     drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
-    drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen)
+    drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen) #minion
  
     drawHealthBarBackground()
     drawHealthBar()
@@ -188,11 +188,24 @@ def ingameDraw():
     else:
         globalVar.fps ==0
     
-
     drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
 
     if globalVar.scoreboard != None:
         globalVar.scoreboard.showScore()
+
+def enemyDead():
+    fixscreen()
+    drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
+    charFrameArray = []
+    for i  in range(0,9):
+        charFrameArray.append(globalVar.assetPool[i])
+    
+    drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
+ 
+    drawHealthBarBackground()
+    drawHealthBar()
+    drawitembar()
 
 import pygame
 
