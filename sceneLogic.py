@@ -267,7 +267,6 @@ def selectSubInStartSceneStateMachine():
 
 def ingameScene():
     globalVar.scoreboard = score.ScoreBoard()
-    globalVar.scoreboard.showScore()
     if globalVar.inputSystem["commandState"][10] == "Pressing":  
         globalVar.character_x, globalVar.character_y = pygame.mouse.get_pos()
         x_win, y_win = globalVar.screen.get_size()
