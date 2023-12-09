@@ -269,7 +269,6 @@ def selectSubInStartSceneStateMachine():
 
 def ingameScene():
     globalVar.scoreboard = score.ScoreBoard()
-    globalVar.scoreboard.showScore()
     if globalVar.inputSystem["commandState"][10] == "Pressing":  
         globalVar.character_x, globalVar.character_y = pygame.mouse.get_pos()
         x_win, y_win = globalVar.screen.get_size()
@@ -364,7 +363,7 @@ def ingameScene():
 
 def endScene():
     if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
-        globalVar.score == 0
+        globalVar.score = 0
         globalVar.objectPool[5][3] = 0
         globalVar.currentUpdateBlock = startScenenLogic 
         globalVar.currentDrawBlock = sceneDraw.drawBlack4Start
