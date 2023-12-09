@@ -231,6 +231,53 @@ def ingameDraw():
         else:
             globalVar.scoreboard.showScore(1500,20)
 
+def enemyDead():
+    fixscreen()
+    drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
+    charFrameArray = []
+    for i  in range(0,9):
+        charFrameArray.append(globalVar.assetPool[i])
+    minionFrameArray = [globalVar.assetPool[10]]
+    drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
+    
+ 
+    drawHealthBarBackground()
+    drawHealthBar()
+    drawitembar()
+    drawKeystone('Lethal Tempo')
+    
+    if globalVar.fps <= 60:
+        drawText(3)
+        pass
+    elif globalVar.fps <=120:
+        drawText(2)
+    elif globalVar.fps <=180:
+        drawText(1)
+    else:
+        globalVar.fps == 0
+
+    drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
+
+    if globalVar.fps <= 60:
+        drawText(3)
+        pass
+    elif globalVar.fps <=120:
+        drawText(2)
+    elif globalVar.fps <=180:
+        drawText(1)
+    else:
+        globalVar.fps ==0
+    
+    drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
+
+    if globalVar.scoreboard != None:
+        globalVar.scoreboard = score.ScoreBoard()
+        if globalVar.currentUpdateBlock == sceneLogic.endScene:
+            globalVar.scoreboard.showScore(790,750)
+        else:
+            globalVar.scoreboard.showScore(1500,20)
+            
 import pygame
 
 def fixscreen():
