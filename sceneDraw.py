@@ -211,7 +211,6 @@ def enemyDead():
     charFrameArray = []
     for i  in range(0,9):
         charFrameArray.append(globalVar.assetPool[i])
-    minionFrameArray = [globalVar.assetPool[10]]
     drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
     
  
