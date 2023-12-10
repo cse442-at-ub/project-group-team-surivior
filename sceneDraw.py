@@ -1,4 +1,4 @@
-import pygame,globalVar,score
+import pygame,globalVar,score,sceneLogic
 
 def drawBlack(object):
     x_win, y_win = globalVar.screen.get_size()
@@ -175,14 +175,14 @@ def drawText(number):
 def ingameDraw():
     fixscreen()
     drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
-    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen) #minion shadow
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
     charFrameArray = []
     for i  in range(0,9):
         charFrameArray.append(globalVar.assetPool[i])
     minionFrameArray = [globalVar.assetPool[10]]
     drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
-    drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen)
+    drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen) #minion
  
     drawHealthBarBackground()
     drawHealthBar()
@@ -201,8 +201,24 @@ def ingameDraw():
 
     drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
 
+    if globalVar.fps <= 60:
+        drawText(3)
+        pass
+    elif globalVar.fps <=120:
+        drawText(2)
+    elif globalVar.fps <=180:
+        drawText(1)
+    else:
+        globalVar.fps ==0
+    
+    drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
+
     if globalVar.scoreboard != None:
-        globalVar.scoreboard.showScore()
+        globalVar.scoreboard = score.ScoreBoard()
+        if globalVar.currentUpdateBlock == sceneLogic.endScene:
+            globalVar.scoreboard.showScore(790,750)
+        else:
+            globalVar.scoreboard.showScore(1500,20)
 
 def enemyDead():
     fixscreen()
@@ -211,7 +227,6 @@ def enemyDead():
     charFrameArray = []
     for i  in range(0,9):
         charFrameArray.append(globalVar.assetPool[i])
-    minionFrameArray = [globalVar.assetPool[10]]
     drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
     
  
