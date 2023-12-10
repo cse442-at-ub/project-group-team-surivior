@@ -1,4 +1,5 @@
 import threading,os,pygame
+from role import character1, Enemy
 
 pygame.init()
 
@@ -21,7 +22,16 @@ BGMVolume = 0
 SFXVolume = 0
 score = 0
 scoreboard = None
-keystone_activation = None
+
+char_max_health = character1.max_health
+char_damage = character1.current_damage_number
+char_armor = character1.current_armor
+char_magical_resistance = character1.current_magic_resistance
+
+enemy_max_health = Enemy.max_health
+enemy_damage = Enemy.current_damage_number
+enemy_armor = Enemy.current_armor
+enemy_magical_resistance = Enemy.current_magic_resistance
 
 ITEM_BAR_HEIGHT = 100
 ITEM_WIDTH = 80  # Width of each item including margin
