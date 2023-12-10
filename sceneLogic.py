@@ -264,10 +264,11 @@ def selectSubInStartSceneStateMachine():
                 globalVar.charMoving = False
                 globalVar.enemyMoving = False
                 globalVar.fps = 180
+                globalVar.enemyHealth = 5 # enemy's health
+                globalVar.kill_timer = 0 # timer for character
 
 def ingameScene():
     globalVar.scoreboard = score.ScoreBoard()
-    globalVar.scoreboard.showScore()
     if globalVar.inputSystem["commandState"][10] == "Pressing":  
         globalVar.character_x, globalVar.character_y = pygame.mouse.get_pos()
         x_win, y_win = globalVar.screen.get_size()
@@ -276,7 +277,7 @@ def ingameScene():
         globalVar.charMoving = True
 
 
-    if globalVar.inputSystem["commandState"][3] == "Pressing" and globalVar.health < 10: 
+    if globalVar.inputSystem["commandState"][3] == "Pressing" and globalVar.health < 10: # press R to heal
         if globalVar.fps >= 180:   
             globalVar.health += 1
             globalVar.fps = 0
@@ -304,8 +305,9 @@ def ingameScene():
     distance = math.sqrt(dx ** 2 + dy ** 2)
     if abs(dx) > 3 and abs(dy) > 3:
         globalVar.enemyMoving = True
+    
     if globalVar.enemyMoving:
-
+                
         if distance > 0:
             dx /= distance
             dy /= distance
@@ -320,12 +322,42 @@ def ingameScene():
         if abs(dx) > 3 and abs(dy) > 3:
             globalVar.enemyMoving = True
         
-
-        if globalVar.health > 0 and distance <= 15 and globalVar.attack_timer <= 0:  
+        if globalVar.health > 0 and distance <= 15 and globalVar.attack_timer <= 0 and globalVar.enemyHealth > 0:  
             globalVar.health -= globalVar.damage  # Reduce character's health
             globalVar.attack_timer = 60  # Set the attack timer to 1 second (FPS frames)
-            # globalVar.color_change_timer = int(0.1 * 60)  # Set color change timer to 0.1 seconds
 
         globalVar.attack_timer = max(0, globalVar.attack_timer - 1)  # Decrease the attack timer
-        # globalVar.color_change_timer = max(0, globalVar.color_change_timer - 1)  # Decrease the color change timer
-        # globalVar.color_change_timer_heal = max(0, globalVar.color_change_timer_heal - 1)  # Decrease the color change timer
+
+        if globalVar.inputSystem["commandState"][0] == "Pressing" and globalVar.enemyHealth > 0 and distance <= 20 and globalVar.kill_timer <= 0: # press Q to kill
+            globalVar.enemyHealth -= 1 # reduce enemy health
+            globalVar.score += 1 # increase score
+            globalVar.kill_timer = 30 # Set the attack timer to 0.5 second (FPS frames)
+        
+        globalVar.kill_timer = max(0, globalVar.kill_timer - 1)  # Decrease the kill timer
+        
+    if globalVar.enemyHealth <= 0:
+        globalVar.enemyMoving = False
+        x_win, y_win = globalVar.screen.get_size()
+        globalVar.currentUpdateBlock = endScene
+        globalVar.currentDrawBlock = sceneDraw.enemyDead
+        Sound.change_music("asset/bgm/VictoryBGM.wav")
+        globalVar.objectPool[5][4] = 255
+        b_toStart = button.Button("start",(633*x_win/1600,510*y_win/900),globalVar.screen)
+        globalVar.buttons = [b_toStart]
+
+    if globalVar.health <= 0:
+        x_win, y_win = globalVar.screen.get_size()
+        globalVar.currentUpdateBlock = endScene
+        globalVar.currentDrawBlock = sceneDraw.ingameDraw
+        Sound.change_music("asset/bgm/Gameover.wav")
+        globalVar.objectPool[5][4] = 255
+        b_toStart = button.Button("start",(633*x_win/1600,510*y_win/900),globalVar.screen)
+        globalVar.buttons = [b_toStart]
+
+def endScene():
+    if globalVar.inputSystem["commandState"][10] == "Pressing" and globalVar.buttons[0].check_collided():
+        globalVar.score = 0
+        globalVar.objectPool[5][3] = 0
+        globalVar.currentUpdateBlock = startScenenLogic 
+        globalVar.currentDrawBlock = sceneDraw.drawBlack4Start
+        globalVar.sceneTimer = -1

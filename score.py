@@ -1,15 +1,15 @@
 import pygame, globalVar
 
-class ScoreBoard():
+class ScoreBoard:
     def __init__(self):
         self.score = globalVar.score
         self.text_color = (255, 255, 255)
         self.font = pygame.font.SysFont('Helvetica', 36)
     
-    def showScore(self):
+    def showScore(self,globalX,globalY):
         str_score = "Score: " + str(self.score) # change int to str
         self.score_image = self.font.render(str_score, False, self.text_color) # turn str to Surface object
-        self.score_rect = self.score_image.get_rect(center=(1500, 20)) # 获取分数图形的坐标位置
+        self.score_rect = self.score_image.get_rect(center=(globalX,globalY)) # 获取分数图形的坐标位置
         x = self.score_rect.x
         y = self.score_rect.y
         x_win, y_win = globalVar.screen.get_size()

@@ -1,4 +1,4 @@
-import pygame,globalVar,score
+import pygame,globalVar,score,sceneLogic
 
 def drawBlack(object):
     x_win, y_win = globalVar.screen.get_size()
@@ -79,6 +79,17 @@ def drawitembar():
     for i in globalVar.item_bar_list:
         drawOneImageObject(globalVar.itemPool[globalVar.item_bar_list[i]],[i*60,0,1,0,255,0,None,None],globalVar.screen)
 
+def drawKeystone(status):
+    x = 0  
+    y = 0 
+    my_font = pygame.font.SysFont('comicsansms', 30)
+    text_surface = my_font.render('rune keystone: ' + status, False, (0, 0, 0))
+    x_win, y_win = globalVar.screen.get_size()
+    x_img, y_img = text_surface.get_size()
+    x_position = (x_win - x_img * x_win / 1600) / 2  # Center horizontally
+    image = pygame.transform.scale(text_surface, (x_img * x_win / 1600, y_img * y_win / 900))
+    globalVar.screen.blit(image, (x_position, y))
+
 def startScenenDraw():
     fixscreen()
     drawOneImageObject(globalVar.assetPool[14],globalVar.objectPool[25],globalVar.screen)
@@ -149,24 +160,112 @@ def startScenenDraw():
 
     drawBlack(globalVar.objectPool[0])
 
+def drawText(number):
+    x = 780
+    y = 850
+    # size = object[2]
+    my_font = pygame.font.SysFont('Roboto', 30)
+    text_surface = my_font.render('Health Cooldown ' + str(number), False, (0, 0, 0))
+    x_win, y_win = globalVar.screen.get_size()
+    x_img, y_img = text_surface.get_size()
+    image = pygame.transform.scale(text_surface, (x_img*x_win/1600,y_img*y_win/900))
+    # image.set_alpha(object[4])
+    globalVar.screen.blit(image, (x*x_win/1600, y*y_win/900))
 
 def ingameDraw():
     fixscreen()
     drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
-    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[3],globalVar.screen) #minion shadow
     drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
     charFrameArray = []
     for i  in range(0,9):
         charFrameArray.append(globalVar.assetPool[i])
     minionFrameArray = [globalVar.assetPool[10]]
     drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
-    drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen)
+    drawArrayImageObject(minionFrameArray,globalVar.objectPool[2],globalVar.screen) #minion
  
     drawHealthBarBackground()
     drawHealthBar()
     drawitembar()
+    drawKeystone('Lethal Tempo')
+    
+    if globalVar.fps <= 60:
+        drawText(3)
+        pass
+    elif globalVar.fps <=120:
+        drawText(2)
+    elif globalVar.fps <=180:
+        drawText(1)
+    else:
+        globalVar.fps == 0
 
+    drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
 
+    if globalVar.fps <= 60:
+        drawText(3)
+        pass
+    elif globalVar.fps <=120:
+        drawText(2)
+    elif globalVar.fps <=180:
+        drawText(1)
+    else:
+        globalVar.fps ==0
+    
+    drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
+
+    if globalVar.scoreboard != None:
+        globalVar.scoreboard = score.ScoreBoard()
+        if globalVar.currentUpdateBlock == sceneLogic.endScene:
+            globalVar.scoreboard.showScore(790,750)
+        else:
+            globalVar.scoreboard.showScore(1500,20)
+
+def enemyDead():
+    fixscreen()
+    drawOneImageObject(globalVar.assetPool[9],globalVar.objectPool[4],globalVar.screen)
+    drawOneImageObject(globalVar.assetPool[11],globalVar.objectPool[1],globalVar.screen)
+    charFrameArray = []
+    for i  in range(0,9):
+        charFrameArray.append(globalVar.assetPool[i])
+    drawArrayImageObject(charFrameArray,globalVar.objectPool[0],globalVar.screen)
+    
+ 
+    drawHealthBarBackground()
+    drawHealthBar()
+    drawitembar()
+    drawKeystone('Lethal Tempo')
+    
+    if globalVar.fps <= 60:
+        drawText(3)
+        pass
+    elif globalVar.fps <=120:
+        drawText(2)
+    elif globalVar.fps <=180:
+        drawText(1)
+    else:
+        globalVar.fps == 0
+
+    drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
+
+    if globalVar.fps <= 60:
+        drawText(3)
+        pass
+    elif globalVar.fps <=120:
+        drawText(2)
+    elif globalVar.fps <=180:
+        drawText(1)
+    else:
+        globalVar.fps ==0
+    
+    drawOneImageObject(globalVar.assetPool[12],globalVar.objectPool[5],globalVar.screen)
+
+    if globalVar.scoreboard != None:
+        globalVar.scoreboard = score.ScoreBoard()
+        if globalVar.currentUpdateBlock == sceneLogic.endScene:
+            globalVar.scoreboard.showScore(790,750)
+        else:
+            globalVar.scoreboard.showScore(1500,20)
+            
 import pygame
 
 def fixscreen():
